@@ -1,0 +1,45 @@
+# Turkish translation of analog package
+# Copyright (C) 2014 Mert Dirik
+# This file is distributed under the same license as the analog package.
+# Mert Dirik <mertdirik@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: analog 2%3a6.0-20\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2014-08-30 22:33+0200\n"
+"Last-Translator: Mert Dirik <mertdirik@gmail.com>\n"
+"Language-Team: Debian L10n Turkish <debian-l10n-turkish@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: tr\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "'analog'un anlgform web arayüzü etkinleştirilsin mi?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"Analog yazılımı kendisine web arayüzü sağlayan anlgform adında bir CGI "
+"betiği içermektedir."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"Bu betiği etkinleştirmenin güvenlik açısından bazı olası sonuçları olabilir "
+"veya herkes tarafından görülebilir olmaması gereken, örneğin web sitesi "
+"kayıtları gibi, bazı bilgilerin açığa çıkmasına yol açabilir."

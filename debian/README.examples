@@ -1,0 +1,7 @@
+-- Joey Hess <joeyh@debian.org>
+I've also added some home-grown analog scripts that let analog deal
+This directory includes example files shipped with the main analog
+distribution (notably, the various .cfg files are example config files).
+ftplog2commonlog.
+process mail server logs. For ftp, you just run your logs through
+with ftp and mail server logs. See analog_mail.cfg for how to make it

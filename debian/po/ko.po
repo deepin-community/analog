@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Jong\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2011-07-01 17:30+0900\n"
+"Last-Translator: 김종규 <jonggeu@gmail.com>\n"
+"Language-Team: Korean <debian-l10n-korean@lists.debian.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Korean\n"
+"X-Poedit-Country: KOREA, REPUBLIC OF\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "아날로그로 anlgform 웹 인터페이스를 사용하시겠습니까?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"아날로그는 소프트웨어에서 웹 인터페이스를 제공하는 anlgform이라 불리는 CGI 스"
+"크립트를 포함합니다. "
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"공개해서는 안되는 웹 사이트 로그와 같은 것을 사용하면 보안에 영향을 미칠 수 "
+"있고 정보가 노출될 수 있습니다."

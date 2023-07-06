@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+. /usr/share/debconf/confmodule
+
+PRI=low
+if [ -e /usr/lib/cgi-bin/anlgform.cgi ]; then
+	# The link exists, made by the postinst or by hand, so default
+	# to keeping it.
+	db_set analog/anlgform true
+else
+	# No link, no upgrade; disable.
+	db_set analog/anlgform false
+fi
+
+db_input $PRI analog/anlgform || true
+db_go || true

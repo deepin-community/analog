@@ -1,0 +1,81 @@
+Description: Multi-stream bz2 files are created if you concatenate
+ two "normal" bz2 files. Analog's current code stops at the end
+ of the first stream. This happens without error, and simply
+ shows up as an unexplained failure to read to the end of the
+ log file.
+ This patch checks if the end-of-stream is also the end-of-file,
+ and if not, it opens the next stream and continues on.
+Author: Andrew McCarthy <andrewmc-debian@celt.dias.ie>
+Last-Update: 2022-04-13
+Bug-Debian: https://bugs.debian.org/522277
+Index: src/input.c
+===================================================================
+--- a/src/input.c	2004-12-19 13:51:30.000000000 +0000
++++ b/src/input.c	2009-04-02 10:07:38.000000000 +0100
+@@ -377,6 +377,9 @@
+ choice getmoredata(Logfile *lf, char *start, size_t length) {
+ #ifndef LINE_PARSER
+   int bze;
++  void* unusedPtr;
++  char* unusedData;
++  int unusedCount;
+ #endif
+   int n;
+ 
+@@ -397,9 +400,53 @@
+       n = 0;  /* unzReadCurrentFile() returns -1 on error */
+     break;
+   case LF_BZ2:
+-    n = BZ2_bzRead(&bze, (BZFILE *)(lf->file2), (void *)start, length);
+-    if (bze != BZ_OK && bze != BZ_STREAM_END)
+-      n = 0;  /* return value from BZ2_bzRead() undefined on error */
++    n = 0;
++    // Multiple BZ2 streams may occur in a single file. If we reach the end of
++    // a stream before we have enough bytes, open the next stream and go again
++    while (n < length) {
++      n = n + BZ2_bzRead(&bze, (BZFILE *)(lf->file2), (void *)start + n, length - n);
++
++      if (bze != BZ_OK && bze != BZ_STREAM_END) {
++        n = 0;  /* return value from BZ2_bzRead() undefined on error */
++        break;
++      }
++
++      if (bze == BZ_STREAM_END) {
++        // Is this really the end of the file, or is there another stream?
++        // Check for "unused" data (see the bzip docs for what this is)
++        BZ2_bzReadGetUnused(&bze, (BZFILE *)(lf->file2), &unusedPtr, &unusedCount);
++        if (bze != BZ_OK) {
++          n = 0;  // Something's wrong, give up
++          break;
++        }
++
++        if (unusedCount == 0 && feof((FILE *)(lf->file))) {
++          break;  // Real end-of-file
++        }
++
++        // Put the unused data somewhere safe for a moment
++        unusedData = malloc(unusedCount);
++        memcpy(unusedData, unusedPtr, unusedCount);
++
++        // Close the old stream
++        BZ2_bzReadClose(&bze, (BZFILE *)(lf->file2));
++        if (bze != BZ_OK) {
++          n = 0;  // Something's wrong, give up
++          break;
++        }
++
++        // Open the new stream
++        lf->file2 = (void *)BZ2_bzReadOpen(&bze, (FILE *)(lf->file),
++                  0, 0, unusedData, unusedCount);
++        if (bze != BZ_OK || (BZFILE *)(lf->file2)==NULL) {
++          n = 0;  // Something's wrong, give up
++          break;
++        }
++
++        // Unused data is copied immediately by bzReadOpen
++        free(unusedData);
++      }
++    }
+     break;
+ #endif
+   default:

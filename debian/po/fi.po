@@ -1,0 +1,40 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: analog 2:6.0-13\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2007-11-16 19:02+0200\n"
+"Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
+"Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Finnish\n"
+"X-Poedit-Country: FINLAND\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "Aktivoidaanko analogin verkkokäyttöliittymä anlgform?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"Analog sisältää CGI-komentotiedoston nimeltä anlgform, joka tarjoaa "
+"ohjelmalle verkkokäyttöliittymän."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"Sen aktivointi saattaa merkitä turvariskejä ja paljastaa tietoja, kuten "
+"verkkosivujen lokitiedostoja, joiden ei tulisi olla julkisia."

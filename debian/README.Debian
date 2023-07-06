@@ -1,0 +1,37 @@
+This version of analog is built with pcre support, and support for pie
+charts.
+
+For Debian, analog is configured to use FHS locations for files, and
+defaults to using apache's log files. In particular, analog defaults to
+reading log files from /var/log/apache if no directory is specified (and
+the default log file is access.log, so it will work without configuration
+with apache), and language files from /usr/share/analog/lang/. It uses
+/var/cache/analog/ for cache files, and /var/cache/analog/dns/ for DNS
+caching. Lock files are placed in /var/lock by default. If no directory is
+specified when telling analog the filename of a config file, an output
+file, an error file, or a header file, it looks in the current directory.
+
+To enable/disable the anlgform cgi interface, dpkg-reconfigure analog, or
+frob the symlink (/usr/lib/cgi-bin/anlgform.cgi ->
+/usr/share/analog/anlgform.pl) by yourself. Note that for anlgform to work,
+it must be able to read your web server logs. If you are using apache2, you
+may need to modify the log file permissions to 644, and edit change
+/etc/logrotate.d/apache2 to also use that permissions setting for the log
+files.
+
+Analog reports link to some images that are distributed as part of analog.
+These images are made available by creating the symbolic link
+/path/to/webserver/root/analog, (Usually /var/www/analog) pointing to
+/usr/share/analog/images/, and analog defaults to linking to /analog/ for
+the images. This will also not work if you have generated a report and are
+viewing it directly, not via the web. In this case you should set IMAGEDIR
+to point to /usr/share/analog/images/.
+
+Several upstream's language files, which can be founded in the lang
+directory, are not valid UTF-8. Debian has used UTF-8 for many years, so
+the upstream's language files have been converted with iconv to UTF-8.
+These UTF-8 language files can be founded in debian/lang. This version of
+analog uses these UTF-8 language files.
+
+-- Joey Hess <joeyh@debian.org>
+-- Lourisvaldo Figueredo Junior <lourisvaldo@figueredo.tec.br>, Tue, 18 Oct 2022 21:04:14 +0300

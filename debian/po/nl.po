@@ -1,0 +1,62 @@
+#
+#    Translators, if you are not familiar with the PO format, gettext
+#    documentation is worth reading, especially sections dedicated to
+#    this format, e.g. by running:
+#         info -n '(gettext)PO Files'
+#         info -n '(gettext)Header Entry'
+#
+#    Some information specific to po-debconf are available at
+#            /usr/share/doc/po-debconf/README-trans
+#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
+#
+#    Developers do not need to manually edit POT or PO files.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: analog\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2007-11-23 19:36+0100\n"
+"Last-Translator: Bart Cornelis <cobaco@skolelinux.no>\n"
+"Language-Team: debian-l10n-dutch <debian-l10n-dutch@lists.debian.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Dutch\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "Wilt u de anlgform webinterface activeren? "
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"Het door Analog meegeleverde CGI-script 'anlgform' voorziet een webinterface "
+"voor dit programma."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"Dit activeren kan gevolgen hebben voor beveiliging, en kan informatie die "
+"niet publiek moet zijn (zoals website-logboeken) blootstellen."
+
+#~ msgid ""
+#~ "Analog includes a cgi script called anlgform that provides a web "
+#~ "interface to analog. It has a history of security problems, and may "
+#~ "expose information (web site logs) that you don't want to make public."
+#~ msgstr ""
+#~ "Analog bevat het cgi-script anlgform, deze vormt een webinterface voor "
+#~ "analog. Dit script heeft echter een geschiedenis van "
+#~ "beveiligingsproblemen, en vormt dus een mogelijklek voor gevoelige "
+#~ "informatie (website logs) die u niet-plubliek wilt maken."

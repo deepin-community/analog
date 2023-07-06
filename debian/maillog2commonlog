@@ -1,0 +1,150 @@
+#!/usr/bin/perl -w
+#
+# Convert sendmail, postfix, smail, or qmail logs to common log format so
+# they can be processed by standard web log processing software.
+#
+# Here's a sample log entry, in common log format:
+#
+# someone@foo.bar - - [31/May/1996:13:55:28 -0400] "GET /fred/" 200 541
+#
+# Meaning that someone@foo.bar sent mail to fred, on the given date, and the 
+# message was 541 k long.
+#
+# Only mail that was successfully sent is logged.
+#
+# Maillog2Commonlog v. 3.2 is copyright 1995, 1996, 2000 by Joey Hess.
+# May be distributed under the terms of the GPL.
+#
+# Usage:
+# 	maillog2commonlog [sendmail|smail|newsmail|qmail|postfix] < logfile
+#
+# Note: if your smail is < version 3.2, then use smail. If it is 3.2 or
+# greater, the logfile format changed, and you must use newsmail instead.
+#
+# Note: it only works for qmail if qmail is set up to log messages via
+# syslog. Otherwise, it isn't going to find timestamps.
+
+use URI::Escape;
+
+$logtype=lc(shift);
+if ($logtype ne 'sendmail' and $logtype ne 'smail' and $logtype ne 'newsmail'
+	and $logtype ne 'qmail' and $logtype ne 'postfix') {
+	print <<eof;
+Usage:
+	maillog2commonlog [sendmail|smail|newsmail|qmail|postfix] < logfile
+eof
+	exit;
+}
+
+# Get the timezone offset. Needs a fairly new date command.
+my $date=`date -R`;
+($tzoffset)=$date=~m/( [+-]?\d+)$/;
+
+# Enter a list of hosts for which we will log the actual username of the people
+# sending/recieving mail. Otherwise, we will just log the hostname.
+@pub_hosts=('localhost');
+# By default this includes the hostname, fqdn, and domain name.
+chomp ($hostname = `hostname`);
+chomp ($fqdn = `hostname -f`);
+chomp ($domain = `hostname -d`);
+push @pub_hosts, $hostname, $fqdn, $domain;
+
+sub Log { my $message_id=shift;
+	print "$msg_buf{$message_id}{from} - - [$msg_buf{$message_id}{day}/$msg_buf{$message_id}{mon}/$year:$msg_buf{$message_id}{time}$tzoffset] \"GET /$msg_buf{$message_id}{to}/\" 200 $msg_buf{$message_id}{size}\n";
+	delete $msg_buf{$message_id};
+}
+
+sub FixEmail { $_=shift;
+	s/[<|>]//g;
+	if (m/\@(.*)$/ ne '') {
+		if ($pub_hosts_hash{$1}) { ($_)=m/^(.*)\@/ } else { $_=$1 }
+	}
+	return uri_escape($_);
+}
+
+foreach (@pub_hosts) {
+	$pub_hosts_hash{$_}=1;
+}
+
+my @localtime=localtime;
+$year=$localtime[5] + 1900;
+
+# Now on to actually processing the logs. Sendmail and smail use very 
+# different file formats, sendmail is all on 1 line, smail is a muilt-
+# line format that's easier to process, with \n\n seperating each multi-
+# line record. And newsmail is ugly ('nuff said..)
+
+if ($logtype eq 'smail') { 
+	# read in a whole multi-line record at one go.
+	$/="\n\n";
+}
+
+if ($logtype=~m/smail/) { 
+	# Set up numeric date to Mmm date translation table for smail.
+	my $i=1;
+	foreach (qw{Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec}) {
+		$date_trans[$i++]=$_;
+	}
+}
+
+while (<>) {
+	# There are 2 distinct log lines types, either mail is being recieved
+	# or sent. We have to combine the 2 lines to get a clear picture of a
+	# mail message. For qmail, there are 3 log line types: mail recieved,
+	# delivery started, and delivery completed.
+
+	if ((/: from=/) || (/\] received\n/m) ||
+	    (/\] Received /) || (/info msg .* from/)) { # Recieved mail.
+		if (/: from=/) { # SENDMAIL and POSTFIX
+			($message_id,$from,$size)=m/\w+\s+\d+\s+\d+:\d+:\d+\s+[^ ]+\s+(?:imap\s+)?(?:sendmail|sm-mta|postfix\/qmgr)\[\d+\]:\s+(.*?):\s+from=(.*?),\s+size=(\d+)/;
+		}
+		elsif (/\] received\n/m) { # SMAIL
+			($message_id,$from)=m/^\d+\/\d+\/\d+\s+\d+\:\d+\:\d+\:\s+\[(.*?)\]\s+received\n\|\s+from:\s+(.*?)\n/m;
+			($size)=m/\|\s+size:\s+(\d+)\s+bytes\n/m;
+		}
+		elsif (/\] Received /) { # NEWSMAIL
+			($message_id)=m/\[(.*?)\]/;
+			($from)=m/Received FROM:(.*?) /;
+			($size)=m/SIZE:(\d+)\s/;
+		}
+		elsif (/info msg .* from/) { # QMAIL
+			($message_id,$size,$from)=m/info msg (\d+): bytes (\d+) from <(.*)>/;
+		}
+
+		if (!$from) { $from="unknown" }
+		$from=FixEmail($from);
+
+		$msg_buf{$message_id}{from}=$from;
+		$msg_buf{$message_id}{size}=$size;
+
+		if ($msg_buf{$message_id}{to}) { &Log($message_id) }
+	}
+	elsif ((/: to=.*stat(us)?=sent/i) || (/\] delivered\n/m) ||
+	       (/\] Delivered /) || (/starting delivery/)) { # The line logs mail being sent ok.
+		if (/: to=.*stat(us)?=sent/i) {
+			($mon,$day,$time,$message_id,$to)=m/(\w+)\s+(\d+)\s+(\d+:\d+:\d+)\s+[^ ]+\s+(?:imap\s+)?(?:sendmail|sm-mta|postfix\/\w+)\[.*?\]:\s+(.*?):\s+to=(.*?),/;
+		}
+		elsif (/\] delivered\n/m) {
+			($mon,$day,$time,$message_id,$to)=m/(\d+)\/(\d+)\/\d+\s+(\d+:\d+:\d+):\s\[(.*?)\] delivered\n\|\s+to:\s+(.*?)\n/m;
+			$mon=$date_trans[$mon]; # Translate to Mmm format.
+		}
+		elsif (/\] Delivered /) {
+			($mon,$day,$time,$message_id)=m/(\d+)\/(\d+)\/\d+\s+(\d+:\d+:\d+):\s\[(.*?)\]/;
+			($to)=m/TO:(.*?)\s/;
+			$mon=$date_trans[$mon]; # Translate to Mmm format.
+		}
+		elsif (/starting delivery/) {
+			($mon,$day,$time,$message_id,$to)=m/^(\w+)\s+(\d+)\s+(\d+:\d+:\d+)\s+.*\s+msg\s+(\d+)\s+to\s+.*?\s+(.*)$/;
+		}
+
+		$to=FixEmail($to);
+		if (length($day) eq 1 ) { $day="0$day" }
+
+		$msg_buf{$message_id}{mon}=$mon;
+		$msg_buf{$message_id}{day}=$day;
+		$msg_buf{$message_id}{time}=$time;
+		$msg_buf{$message_id}{to}=$to;
+				
+		if ($msg_buf{$message_id}{from}) { &Log($message_id) }
+	}
+}

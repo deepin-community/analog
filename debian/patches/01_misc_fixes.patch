@@ -1,0 +1,232 @@
+Description: grouping of different changes.
+ Enable libraries for compilation, enable IPv6 support, create directory of
+ dnscache, inform the correct  directory of the 'errors.html' file and
+ configure analog's web interface.
+Author: Bradley Smith <brad@brad-smith.co.uk>
+Last-Update: 2022-04-13
+Index: analog/src/Makefile
+===================================================================
+--- analog.orig/src/Makefile
++++ analog/src/Makefile
+@@ -5,13 +5,13 @@
+ CC = gcc           # which compiler to use: eg cc, acc, gcc. NB Different
+ #                    compilers need different CFLAGS, e.g., -O instead of -O2.
+ MAKE = make        # which "make" to use
+-CFLAGS = -O2    # options, e.g. for optimisation or ANSI compilation.
++CFLAGS = -O2 -g    # options, e.g. for optimisation or ANSI compilation.
+ #                 Some OS's need -D_FILE_OFFSET_BITS=64 to support files > 2MB.
+ #                 HP/UX cc needs CFLAGS = -Aa (HP/UX 9) or -Ae (HP/UX 10)
+ #                 BeOS needs CFLAGS = -O2 -Wl,-L/boot/home/config/lib
+ #                 BS2000/OSD needs CFLAGS = -XLLML -XLLMK
+ #                 NeXTSTEP needs CFLAGS = -O2 -pipe -no-precomp 
+-DEFS =          # any combination of -DNOPIPES -DNODNS -DNODIRENT -DNOGLOB ...
++DEFS = -DHAVE_PCRE -DHAVE_GD # any combination of -DNOPIPES -DNODNS -DNODIRENT -DNOGLOB ...
+ #                 ... -DNOOPEN -DNOFOLLOW -DNOALARM -DNOGRAPHICS -DNOGMTIME ...
+ #                 ... -DEBCDIC -DUSE_PLAIN_SETJMP ...
+ #                 ... -DHAVE_GD -DHAVE_ZLIB -DHAVE_BZLIB -DHAVE_PCRE ...
+@@ -30,7 +30,7 @@ DEFS =          # any combination of -DN
+ #
+ OS = UNIX         # Operating system: UNIX, DOS, WIN32, MAC, OS2, OSX, VMS
+ #                   RISCOS, BEOS, NEXTSTEP, MPEIX, BS2000, AS400, OS390
+-LIBS = -lm  # extra libraries needed; most platforms (but not OS X or BeOS)
++LIBS = -lm -lgd -lpng -ljpeg -lz -lbz2 -lpcre  # extra libraries needed; most platforms (but not OS X or BeOS)
+ #               need -lm LAST
+ #             if you defined HAVE_GD above you also need -lgd -lpng -ljpeg -lz
+ #             if you defined HAVE_ZLIB above you also need -lz
+@@ -48,27 +48,31 @@ LIBS = -lm  # extra libraries needed; mo
+ #             SVR4 needs LIBS = -lsocket -lnsl -lm
+ #             DYNIX/ptx needs LIBS = -L/usr/lib/bsd-socket -lsocket -lnsl -lm
+ 
++# Enable large file support for Debian
++CFLAGS += -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
++
+ PROGRAM = analog
+ TARGET = ../analog
+ OBJS = alias.o analog.o cache.o dates.o globals.o hash.o init.o init2.o \
+ 	input.o macinput.o macstuff.o output.o output2.o outcro.o outhtml.o \
+ 	outlatex.o outplain.o outxhtml.o outxml.o process.o settings.o sort.o \
+-	tree.o utils.o win32.o
+-SUBDIRS = bzip2 libgd libpng pcre unzip zlib
+-SUBDIROBJS = libgd/gd.o  libgd/gd_io.o libgd/gd_io_file.o libgd/gd_png.o \
+-	libgd/gdfontf.o libgd/gdfonts.o libgd/gdtables.o \
+-	libpng/png.o libpng/pngerror.o libpng/pngmem.o libpng/pngset.o \
+-	libpng/pngtrans.o libpng/pngwio.o libpng/pngwrite.o \
+-	libpng/pngwtran.o libpng/pngwutil.o pcre/pcre.o \
+-	zlib/adler32.o zlib/compress.o zlib/crc32.o zlib/deflate.o \
+-	zlib/gzio.o zlib/infblock.o zlib/infcodes.o zlib/inffast.o \
+-	zlib/inflate.o zlib/inftrees.o zlib/infutil.o zlib/trees.o \
+-	zlib/uncompr.o zlib/zutil.o unzip/ioapi.o unzip/unzip.o \
+-	bzip2/bzlib.o bzip2/blocksort.o bzip2/compress.o bzip2/crctable.o \
+-	bzip2/decompress.o bzip2/huffman.o bzip2/randtable.o
+-HEADERS = anlghead.h anlghea2.h anlghea3.h anlghea4.h macdir.h \
+-	pcre/pcre.h libgd/gd.h libgd/gdfontf.h libgd/gdfonts.h unzip/unzip.h \
+-	zlib/zlib.h bzip2/bzlib.h
++	tree.o utils.o win32.o libgd/gdfontf.o
++SUBDIRS = unzip
++SUBDIROBJS = unzip/ioapi.o unzip/unzip.o
++#	libgd/gdfontf.o libgd/gd.o  libgd/gd_io.o libgd/gd_io_file.o libgd/gd_png.o \
++#	libgd/gdfontf.o libgd/gdfonts.o libgd/gdtables.o \
++#	libpng/png.o libpng/pngerror.o libpng/pngmem.o libpng/pngset.o \
++#	libpng/pngtrans.o libpng/pngwio.o libpng/pngwrite.o \
++#	libpng/pngwtran.o libpng/pngwutil.o pcre/pcre.o \
++#	zlib/adler32.o zlib/compress.o zlib/crc32.o zlib/deflate.o \
++#	zlib/gzio.o zlib/infblock.o zlib/infcodes.o zlib/inffast.o \
++#	zlib/inflate.o zlib/inftrees.o zlib/infutil.o zlib/trees.o \
++#	zlib/uncompr.o zlib/zutil.o unzip/ioapi.o unzip/unzip.o \
++#	bzip2/bzlib.o bzip2/blocksort.o bzip2/compress.o bzip2/crctable.o \
++#	bzip2/decompress.o bzip2/huffman.o bzip2/randtable.o
++HEADERS = anlghead.h anlghea2.h anlghea3.h anlghea4.h macdir.h unzip/unzip.h
++#	pcre/pcre.h libgd/gd.h libgd/gdfontf.h libgd/gdfonts.h unzip/unzip.h \
++#	zlib/zlib.h bzip2/bzlib.h
+ ALLCFLAGS = $(CFLAGS) $(DEFS) -D$(OS)
+ ALLOBJS = $(OBJS) $(SUBDIROBJS)
+ 
+@@ -77,23 +81,23 @@ $(PROGRAM): $(OBJS) $(SUBDIRS) $(HEADERS
+ 
+ # There doesn't seem to be a good way to write all these rules in a generic
+ # form that works for all "make" programs
+-bzip2: ALWAYS
+-	cd bzip2 && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
++#bzip2: ALWAYS
++#	cd bzip2 && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
+ 
+ libgd: ALWAYS
+ 	cd libgd && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
+ 
+-libpng: ALWAYS
+-	cd libpng && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
++#libpng: ALWAYS
++#	cd libpng && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
+ 
+-pcre: ALWAYS
+-	cd pcre && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
++#pcre: ALWAYS
++#	cd pcre && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
+ 
+ unzip: ALWAYS
+ 	cd unzip && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
+ 
+-zlib: ALWAYS
+-	cd zlib && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
++#zlib: ALWAYS
++#	cd zlib && $(MAKE) 'CC=$(CC)' 'ALLCFLAGS=$(ALLCFLAGS)'
+ 
+ alias.o: alias.c $(HEADERS) Makefile
+ 	$(CC) $(ALLCFLAGS) -c alias.c
+Index: analog/src/alias.c
+===================================================================
+--- analog.orig/src/alias.c
++++ analog/src/alias.c
+@@ -585,6 +585,7 @@ logical dnsresolve(char *name, choice le
+ #endif
+   volatile logical done = FALSE;
+ #ifndef MAC
++  struct in6_addr addr6;
+   IN_ADDR_T addr;
+ #ifdef VMS
+   char *addrp;
+@@ -605,9 +606,17 @@ logical dnsresolve(char *name, choice le
+   done = IpAddr2Name(name);
+   /* Doesn't currently include code to use SIGALRM */
+ #else
++  addrp=NULL;
+   addr = inet_addr(name);
+   if (addr != INET_ADDR_ERR) {
+     addrp = (char *) &addr;
++  }
++  else {
++    if (inet_pton(AF_INET6, name, &addr6) > 0) {
++      addrp = (char *) &addr6;
++    }
++  }
++  if (addrp) {
+ #ifndef NOALARM
+     if (SETJMP(jumpbuf))
+       signal(SIGALRM, SIG_DFL);
+@@ -616,7 +625,10 @@ logical dnsresolve(char *name, choice le
+       signal(SIGALRM, sighandler);
+       alarm(dnstimeout);
+ #endif
+-      tempp = gethostbyaddr(addrp, sizeof(IN_ADDR_T), AF_INET);
++      if (addr != INET_ADDR_ERR)
++        tempp = gethostbyaddr(addrp, sizeof(IN_ADDR_T), AF_INET);
++      else
++        tempp = gethostbyaddr(addrp, sizeof(struct in6_addr), AF_INET6);
+ #ifndef NOALARM
+       alarm(0);
+       signal(SIGALRM, SIG_DFL);
+Index: analog/src/anlghea2.h
+===================================================================
+--- analog.orig/src/anlghea2.h
++++ analog/src/anlghea2.h
+@@ -55,7 +55,7 @@
+ #endif
+ 
+ #ifndef NODNS
+-#define DNSFILE "dnscache"
++#define DNSFILE "/var/cache/analog/dnscache"
+ /* where to store resolved addresses so we don't have to look them up next
+    time */
+ 
+Index: analog/src/utils.c
+===================================================================
+--- analog.orig/src/utils.c
++++ analog/src/utils.c
+@@ -446,7 +446,7 @@ void warn(char c, choice domess, char *s
+     mprintf(errfile, 0, NULL);
+     if (!errmess && domess) {
+       fputs("  (For help on all errors and warnings,", errfile);
+-      fputs(" see docs/errors.html)\n", errfile);
++      fputs(" see /usr/share/doc/analog/docs/errors.html)\n", errfile);
+       errmess = TRUE;
+     }
+     va_end(ap);
+@@ -474,7 +474,7 @@ void error(char *s, ...) {
+   mprintf(errfile, 0, NULL);
+   if (!errmess) {
+     fputs("  (For help on all errors and warnings,", errfile);
+-    fputs(" see docs/errors.html)\n", errfile);
++    fputs(" see /usr/share/doc/analog/docs/errors.html)\n", errfile);
+     errmess = TRUE;
+   }
+   if (errfile != stderr) {
+Index: anlgform.html
+===================================================================
+--- a/anlgform.html
++++ b/anlgform.html
+@@ -12,20 +12,15 @@
+ <!-- First, uncomment the img tag above, edited if necessary. -->
+ <!-- Next, uncomment the following line, edited to reflect the correct -->
+ <!-- location of anlgform.pl in you server's filespace. -->
+-<!-- form action="/cgi-bin/anlgform.pl" method="POST" -->
++<form action="cgi-bin/anlgform.cgi" method="POST">
+ <!-- Many systems will want the IMAGEDIR to be different on the form -->
+ <!-- than from the command line, because it should not be within /cgi-bin/ -->
+-<!-- input type=hidden name="IMAGEDIR" value="/images/" -->
++<input type=hidden name="IMAGEDIR" value="/images/">
+ <!-- Some users will want to set their logfile like this. -->
+ <!-- input type=hidden name="LOGFILE" value="/usr/local/etc/httpd/logs/access_log" -->
+ <!-- After you've made these edits, you can remove the "strong" lines below -->
+ <hr>
+ <h2>1. Report choices</h2>
+-<strong><font color=red>N.B. This form will not work - e.g. the buttons may
+-not even appear - until you've configured it according to the instructions.
+-When you've configured it, you should remove this paragraph.<br>
+-</font></strong> <i>See <a href="http://www.analog.cx/">the analog
+-home page</a> for the meanings of the various reports.</i>
+ <p>
+ <h3>Which reports do you want to see?</h3>
+ <br>
+Index: anlgform.pl
+===================================================================
+--- a/anlgform.pl
++++ b/anlgform.pl
+@@ -18,7 +18,7 @@
+
+ # 1) uncomment (remove everything before $analog) and edit one of the next two
+ #    lines to give the location (full pathname) of the analog executable.
+-#       Unix: $analog = '/usr/local/etc/httpd/analog-6.0/analog';
++$analog = '/usr/bin/analog';
+ #       Windows: $analog = 'C:\program files\analog 6.0\analog.exe';
+ # 2) If you're on Unix, edit the first line in this file to give the location
+ #    of Perl (don't remove the #! though).

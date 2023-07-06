@@ -1,0 +1,56 @@
+# analog Brazilian Portuguese translation
+# Copyright (c) 2007 analog's COPYRIGHT HOLDER
+# This file is distributed under the same license as the analog package.
+# Eder L. Marques (frolic) <frolic@debian-ce.org>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: analog 2:6.0-13\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2007-11-29 09:16-0300\n"
+"Last-Translator: Eder L. Marques (frolic) <frolic@debian-ce.org>\n"
+"Language-Team: l10n Portuguese <debian-l10n-portuguese@lists.debian.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"pt_BR utf-8\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n > 1);\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "Habilitar a interface web anlgform para o analog?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"O analog inclui um script CGI chamado anlgform que fornece uma interface web "
+"para o aplicativo."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"Habilitando-o podem haver implicações de segurança e exposição de "
+"informações, como logs dos sites web, que não devem ser públicas."
+
+#~ msgid ""
+#~ "Analog includes a cgi script called anlgform that provides a web "
+#~ "interface to analog. It has a history of security problems, and may "
+#~ "expose information (web site logs) that you don't want to make public."
+#~ msgstr ""
+#~ "O analog inclui um script CGI chamado analogform que fornece uma "
+#~ "interface Web para o analog. O mesmo possui um histórico de problemas de "
+#~ "segurança e pode expor informações (logs de sites Web) que você não "
+#~ "desejaria que se tornassem públicas."
