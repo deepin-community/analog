@@ -1,0 +1,44 @@
+# Italian (it) translation of debconf templates for analog
+# Copyright (C) 2006 Software in the Public Interest
+# This file is distributed under the same license as the analog package.
+# Luca Monducci <luca.mo@tiscali.it>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: analog 2:6.0 (templates)\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2007-11-17 12:53+0100\n"
+"Last-Translator: Luca Monducci <luca.mo@tiscali.it>\n"
+"Language-Team: Italian <debian-l10n-italian@lists.debian.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "Attivare l'interfaccia web anlgform di analog?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"Analog comprende uno script CGI chiamato anlgform che fornisce una "
+"interfaccia web al programma."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"La sua attivazione potrebbe avere delle implicazioni relative alla sicurezza "
+"ed esporre informazioni, come i log del sito web, che non dovrebbero essere "
+"pubbliche."

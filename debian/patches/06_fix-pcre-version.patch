@@ -1,0 +1,198 @@
+Description: adds support for new version of PCRE library (PCRE2)
+Author: Lourisvaldo Figueredo Junior <lourisvaldo@figueredo.tec.br>
+Bug-Debian: https://bugs.debian.org/999917
+Forwarded: https://github.com/c-amie/analog-ce/pull/2
+Last-Update: 2022-06-28
+Index: analog/src/Makefile
+===================================================================
+--- analog.orig/src/Makefile
++++ analog/src/Makefile
+@@ -31,7 +31,7 @@ DEFS = -DHAVE_PCRE -DHAVE_GD # any combi
+ #
+ OS = UNIX         # Operating system: UNIX, DOS, WIN32, MAC, OS2, OSX, VMS
+ #                   RISCOS, BEOS, NEXTSTEP, MPEIX, BS2000, AS400, OS390
+-LIBS = -lm -lgd -lpng -ljpeg -lz -lbz2 -lpcre  # extra libraries needed; most platforms (but not OS X or BeOS)
++LIBS = -lm -lgd -lpng -ljpeg -lz -lbz2 -lpcre2-8  # extra libraries needed; most platforms (but not OS X or BeOS)
+ #               need -lm LAST
+ #             if you defined HAVE_GD above you also need -lgd -lpng -ljpeg -lz
+ #             if you defined HAVE_ZLIB above you also need -lz
+@@ -73,7 +73,7 @@ SUBDIROBJS = unzip/ioapi.o unzip/unzip.o
+ #	bzip2/bzlib.o bzip2/blocksort.o bzip2/compress.o bzip2/crctable.o \
+ #	bzip2/decompress.o bzip2/huffman.o bzip2/randtable.o
+ HEADERS = anlghead.h anlghea2.h anlghea3.h anlghea4.h macdir.h unzip/unzip.h
+-#	pcre/pcre.h libgd/gd.h libgd/gdfontf.h libgd/gdfonts.h unzip/unzip.h \
++#	libgd/gd.h libgd/gdfontf.h libgd/gdfonts.h unzip/unzip.h \
+ #	zlib/zlib.h bzip2/bzlib.h
+ ALLCFLAGS = $(CFLAGS) $(DEFS) -D$(OS) -DBUILD_DATE="\"$(BUILD_DATE)\""
+ ALLOBJS = $(OBJS) $(SUBDIROBJS)
+Index: analog/src/anlghea3.h
+===================================================================
+--- analog.orig/src/anlghea3.h
++++ analog/src/anlghea3.h
+@@ -16,6 +16,7 @@
+ 
+ #ifndef ANLGHEA3_H
+ #define ANLGHEA3_H
++#define PCRE2_CODE_UNIT_WIDTH 8
+ 
+ /*** OS specific things ***/
+ 
+@@ -261,7 +262,7 @@ extern void Win32Cleanup(void);
+ #include "bzip2/bzlib.h"
+ #endif
+ 
+-#include "pcre/pcre.h"
++#include <pcre2.h>
+ 
+ #include "libgd/gd.h"
+ #include "libgd/gdfontf.h"
+@@ -759,7 +760,7 @@ typedef struct aliasto {
+ 
+ typedef struct alias {
+   char *from;
+-  pcre *pattern;
++  pcre2_code *pattern;
+   AliasTo *to;
+   logical isregex;
+   struct alias *next;
+@@ -889,7 +890,7 @@ typedef struct {
+ 
+ typedef struct include {
+   char *name;
+-  pcre *pattern;
++  pcre2_code *pattern;
+   unsigned long minaddr, maxaddr;
+   choice type;
+   struct include *next;
+Index: analog/src/init2.c
+===================================================================
+--- analog.orig/src/init2.c
++++ analog/src/init2.c
+@@ -1469,9 +1469,10 @@ void configalias(void *opt, char *cmd, c
+   int maxrightstar;
+   char starchar;
+   logical is_regex = FALSE;
+-  pcre *pattern = NULL;
+   char *errstr;
+-  int erroffset;
++  pcre2_code *pattern;
++  int err;
++  PCRE2_SIZE erroffset;
+ 
+   if (rc == 0) {
+     shortwarn(cmd, arg1, rc);
+@@ -1489,15 +1490,15 @@ void configalias(void *opt, char *cmd, c
+ 
+   if (headcasematch(arg1, "REGEXP:") || headcasematch(arg1, "REGEXPI:")) {
+     if ((pattern =
+-	 pcre_compile(arg1 + 7 + (arg1[6] != ':'),
+-		      PCRE_DOTALL | ((arg1[6] == ':')?0:PCRE_CASELESS),
+-		      (const char **)(&errstr), &erroffset, NULL)) == NULL) {
++         pcre2_compile((PCRE2_SPTR) arg1 + 7 + (arg1[6] != ':'), PCRE2_ZERO_TERMINATED,
++                       PCRE2_DOTALL | ((arg1[6] == ':')?0:PCRE2_CASELESS),
++                       &err, &erroffset, NULL)) == NULL) {
+       badwarn(cmd, FALSE, arg1, arg2, rc);
+       warn('C', CONTINUATION, "  (%s in regular expression)", errstr);
+       return;
+     }
+     starchar = '(';
+-    pcre_fullinfo(pattern, NULL, PCRE_INFO_CAPTURECOUNT, (void *)&leftstars);
++    pcre2_pattern_info(pattern, PCRE2_INFO_CAPTURECOUNT, (void *)&leftstars);
+     is_regex = TRUE;
+   }
+   else {
+@@ -1617,8 +1618,9 @@ void configinex(void *opt, char *cmd, ch
+   Include **include = (Include **)opt;
+   Include *ip;
+   char *errstr;
+-  int erroffset;
+   char *t;
++  int err;
++  PCRE2_SIZE erroffset;
+ 
+   if (rc == 0) {
+     shortwarn(cmd, arg1, rc);
+@@ -1652,9 +1654,9 @@ void configinex(void *opt, char *cmd, ch
+   (*include)->next = ip;   /* save name even for regex: might l.c. */
+   if (headcasematch(arg1, "REGEXP:") || headcasematch(arg1, "REGEXPI:")) {
+     if (((*include)->pattern =
+-	 pcre_compile(arg1 + 7 + (arg1[6] != ':'), 
+-		      PCRE_DOTALL | ((arg1[6] == ':')?0:PCRE_CASELESS),
+-		      (const char **)(&errstr), &erroffset, NULL)) == NULL) {
++        pcre2_compile((PCRE2_SPTR) arg1 + 7 + (arg1[6] != ':'), PCRE2_ZERO_TERMINATED,
++                      PCRE2_DOTALL | ((arg1[6] == ':')?0:PCRE2_CASELESS),
++                      &err, &erroffset, NULL)) == NULL) {
+       *include = ip;
+       badwarn(cmd, FALSE, arg1, arg2, rc);
+       warn('C', CONTINUATION, "  (%s in regular expression)", errstr);
+Index: analog/src/utils.c
+===================================================================
+--- analog.orig/src/utils.c
++++ analog/src/utils.c
+@@ -112,13 +112,14 @@ void strtolowerx(char *n) { /* lower-cas
+ 
+ void toloweralias(Alias *ap, logical both) {
+   AliasTo *tp;
+-  char *errstr;
+-  int erroffset;
++  int err;
++  PCRE2_SIZE erroffset;
+ 
+   for ( ; ap != NULL; TO_NEXT(ap)) {
+     if (headcasematch(ap->from, "REGEXP:"))
+-      ap->pattern = pcre_compile(ap->from + 7, PCRE_CASELESS | PCRE_DOTALL,
+-				 (const char **)(&errstr), &erroffset, NULL);
++      ap->pattern = pcre2_compile((PCRE2_SPTR) ap->from + 7, PCRE2_ZERO_TERMINATED,
++                                  PCRE2_CASELESS | PCRE2_DOTALL,
++                                  &err, &erroffset, NULL);
+     /* if original regcomp succeeded, this one should too */
+     else if (!headcasematch(ap->from, "REGEXPI:"))
+       /* nothing to do for REGEXPI: */
+@@ -132,13 +133,14 @@ void toloweralias(Alias *ap, logical bot
+ 
+ void tolowerinc(Include *ip) {
+   /* see comments in previous function */
+-  char *errstr;
+-  int erroffset;
++  int err;
++  PCRE2_SIZE erroffset;
+ 
+   for ( ; ip != NULL; TO_NEXT(ip)) {
+     if (headcasematch(ip->name, "REGEXP:"))
+-      ip->pattern = pcre_compile(ip->name + 7, PCRE_CASELESS | PCRE_DOTALL,
+-				 (const char **)(&errstr), &erroffset, NULL);
++      ip->pattern = pcre2_compile((PCRE2_SPTR) ip->name + 7, PCRE2_ZERO_TERMINATED,
++                                  PCRE2_CASELESS | PCRE2_DOTALL,
++                                  &err, &erroffset, NULL);
+     else if (!headcasematch(ip->name, "REGEXPI:"))
+       strtolowerx((char *)(ip->name));
+   }
+@@ -740,11 +742,23 @@ logical wildmatch(char *s, char *p, char
+ }
+ 
+ logical matchq(char *s, void *p, logical is_regex, int *pmatch) {
+-  if (is_regex)
+-    return(pcre_exec((pcre *)p, NULL, s, (int)strlen(s), 0, 0, pmatch,
+-		     (pmatch == NULL)?0:PMATCH_SIZE) >= 0);
+-  else
+-    return(wildmatch(s, (char *)p, s, (pmatch == NULL)?0:PMATCH_SIZE, pmatch));
++  if (is_regex) {
++    int rc;
++    pcre2_match_data *match_data;
++    match_data = pcre2_match_data_create_from_pattern((pcre2_code *)p, NULL);
++    rc = pcre2_match((pcre2_code *)p, (PCRE2_SPTR)s, (PCRE2_SIZE)strlen((char *)s),
++                    0, 0, match_data, NULL);
++    if (pmatch != NULL) {
++        PCRE2_SIZE *ovector;
++        ovector = pcre2_get_ovector_pointer(match_data);
++        for (int i=0; i <= sizeof(ovector); i++) {
++            *(pmatch+i) = (int) *(ovector+i);
++        }
++    }
++    return (rc >=1);
++  }
++   else
++     return(wildmatch(s, (char *)p, s, (pmatch == NULL)?0:PMATCH_SIZE, pmatch));
+ }
+ 
+ logical genwildmatch(char *s, char *s2, char *p) {

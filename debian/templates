@@ -1,0 +1,19 @@
+# These templates have been reviewed by the debian-l10n-english
+# team
+#
+# If modifications/additions/rewording are needed, please ask
+# debian-l10n-english@lists.debian.org for advice.
+#
+# Even minor modifications require translation updates and such
+# changes should be coordinated with translators and reviewers.
+
+Template: analog/anlgform
+Type: boolean
+Default: false
+_Description: Enable the anlgform web interface to analog?
+ Analog includes a CGI script called anlgform that provides a web interface
+ to the software.
+ .
+ Enabling it may have security implications and expose
+ information, such as web site logs, that shouldn't be public.
+

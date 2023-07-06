@@ -1,0 +1,43 @@
+# Portuguese translation of analog debconf messages.
+# Copyright (C) 2007 Carlos Lisboa
+# This file is distributed under the same license as the analog package.
+# Carlos Lisboa <carloslisboa@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: analog\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2007-11-29 23:30+0000\n"
+"Last-Translator: Carlos Lisboa <carloslisboa@gmail.com>\n"
+"Language-Team: Portuguese <traduz@debianpt.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "Activar a interface da internet anlgform para o analog?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"Analog inclui um script CGI chamado anlgform que acrescenta uma interface "
+"web ao software."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"Activá-lo poderá ter implicações na segurança e expôr informação, como logs "
+"do sítio web, que não deveriam ser públicos."

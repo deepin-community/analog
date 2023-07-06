@@ -1,15 +1,35 @@
-Source: template-repository
-Section: unknown
+Source: analog
+Section: web
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Build-Depends: debhelper-compat (= 13),
+               dpkg-dev (>= 1.9.0),
+               libbz2-dev,
+               libgd-dev,
+               libjpeg-dev,
+               libpcre2-dev,
+               libpng-dev,
+               libz-dev
+Maintainer: Lourisvaldo Figueredo Junior <lourisvaldo@figueredo.tec.br>
+Standards-Version: 4.6.1
+Homepage: https://www.c-amie.co.uk/software/analog
+Vcs-Git: https://salsa.debian.org/debian/analog.git
+Vcs-Browser: https://salsa.debian.org/debian/analog
+Rules-Requires-Root: no
 
-Package: template-repository
+Package: analog
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: perl, ${misc:Depends}, ${shlibs:Depends}
+Suggests: apache2 | httpd, rmagic
+Description: web server log analyzer
+ Analog is a fast log file processor that generates usage statistic reports
+ for web servers.
+ .
+ Features:
+  - Fast: can process millions of lines per minute;
+  - Scalable;
+  - Flexible: the default output is well suited for many needs but there
+    are many options and 32 alternative report styles;
+  - Internationalized output;
+  - HTML output (compliant with standards);
+  - Handles many log file formats;
+  - Uses a command-line interface or a web interface.

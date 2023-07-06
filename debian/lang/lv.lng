@@ -1,0 +1,579 @@
+## Latvian language file for analog 6.0
+## May not (or may) work with any other version.
+##
+## This is a language file for analog. Lines beginning with ## are comments.
+## Each language should have one language file in its own character set,
+## and can have an additional one for ASCII (7 bit) output.
+## 
+## Made by Anda Bimbere
+## anda@firstcut.net	http://www.firstcut.net Web design & hosting
+## Any comments welcome
+##
+## The character set of this language file. Prefix with a * to indicate a
+## multibyte character set: e.g. *ISO-2022-JP 
+UTF-8
+## Abbreviations for the day and month names.
+Svētd.
+Pirmd.
+Otrd.
+Trešd.
+Ceturtd.
+Piektd.
+Sestd.
+Jan
+Feb
+Mar
+Apr
+Maij
+Jūn
+Jūl
+Aug
+Sep
+Okt
+Nov
+Dec
+## Next some standard common words.
+## Abbreviation for "week beginning"
+nedēļas sāk.
+gads
+## Quarter of a year
+ceturksnis
+mēnesis
+diena
+dienas
+st.
+minūte
+minūtes
+sekunde
+sekundes
+baits
+baiti
+## ?bytes represents kbytes, Mbytes etc.
+?baiti
+pieprasījums
+pieprasījumi
+datums
+## This has the right spacing for a column like 23/Mar/98 15:00-15:05
+datums      laiks
+laiks
+pirmais datums
+pirmais laiks
+pēdējais datums
+pēdējais laiks
+fails
+faili
+dators
+datori
+virtuāla mašīna
+virtuālas mašīnas
+direktorija
+direktorijas
+domēns
+domēni
+organizācija
+organizācijas
+paplašinājums
+paplašinājumi
+URL
+URLi
+Internet pārlūkprogramma
+Internet pārlūkprogrammas
+OS
+OSas
+## (= operating system, operating systems)
+izmērs
+meklēšanas vārds
+meklēšanas vārdi
+saits
+saiti
+lietotājs
+lietotāji
+status kods
+status kodi
+Web Servera Statistika
+## Prefixes kilo, mega etc. to make kilobytes, megabytes etc.
+kilo
+mega
+giga
+tera
+peta
+exa
+zeta
+yotta
+## Shorter versions of the same prefixes for column headings
+k
+M
+G
+T
+P
+E
+Z
+Y
+## Names for the rows in the File Size Report. Note that changing these will
+## NOT change the boundaries! These are just labels for predetermined buckets.
+## They should line up nicely when right-aligned.
+          0
+   1B-  10B
+  11B- 100B
+ 101B-  1kB
+  1kB- 10kB
+ 10kB-100kB
+100kB-  1MB
+  1MB- 10MB
+ 10MB-100MB
+100MB-  1GB
+      > 1GB
+## Now the names of reports
+Īss Kopsavilkums
+## The time reports, plus "busiest" strings (at the bottom of each report)
+Gada Pārskats
+Visnoslogotākais gads:
+Ceturkšņa Pārskats
+Visnoslogotākais ceturksnis:
+Mēneša Pārskats
+Visnoslogotākais mēnesis:
+Nedēļas Pārskats
+Visnoslogotākā nedēļa: nedēļas sākums
+Dienas kopsavilkums
+Dienas Pārskats
+Visnoslogotākā diena:
+Stundas Pārskats
+Stundas Kopsavilkums
+Nedēļas Stundu Kopsavilkums
+Visnoslogotākā stunda:
+Ceturtdaļstundas Pārskats
+Ceturtdaļstundas Kopsavilkums
+Visnoslogotākā stundas ceturtdaļa:
+Piecu Minūšu Pārskats
+Piecu Minūšu Kopsavilkums
+Visnoslogotākās piecas minūtes:
+## The non-time reports. In each case, we have the name of the report,
+## followed by the type of item in the report, once in the singular and once
+## in the plural. These are used in phrases like "including all ??? with at
+## least 200 requests". (The words higher up are used for column headings.)
+## Finally we have the gender of this type of object, which can be m, f or n.
+##
+## So for example, in German a directory is Verzeichnis (neuter gender), which
+## was given above. But "listing the top directory" is "Ausgabe des ersten
+## Verzeichnisses" and "listing the top two directories" is "Ausgabe der
+## ersten zwei Verzeichnisse". So here, we would have for the directory report:
+##
+## Verzeichnis-Bericht
+## Verzeichnisses
+## Verzeichnisse
+## n
+##
+## I hope that makes sense!
+Datoru Statistika
+dators
+datori
+m
+Servera Pāradresācijas Pārskats
+serveris
+serveri
+m
+Servera Neveiksmju Pārskats
+serveris
+serveri
+m
+Direktoriju Pārskats
+direktorija
+direktorijas
+f
+Failu Tipu Pārskats
+faila paplašinājums
+failu paplašinājumi
+m
+Pieprasījumu Pārskats
+fails
+faili
+m
+Pāradresācijas Pārskats
+fails
+faili
+m
+Kļūdu Pārskats
+fails
+faili
+m
+Pārsūtītāju Pārskats
+pārsūtītāja URL
+pārsūtītāju URLi
+m
+Pārsūtītāja Lapas Pārskats
+pārsūtītāja lapa
+pārsūtītāju lapas
+f
+Pāradresēto Pārsūtītāju Pārskats
+pārsūtītāja URL
+pārsūtītāju URLi 
+m
+Neveiksmīgu Pārsūtītāju Pārskats
+pārsūtītāja URL
+pārsūtītāju URLi 
+m
+Meklēšanas Pieprasījumu Pārskats
+pieprasījums
+pieprasījumi
+m
+Meklēšanas Vārdu Pārskats
+meklēšanas vārds
+meklēšanas vārdi
+m
+Iekšējās Meklēšanas Pieprasījuma Pārskats
+pieprasījums
+pieprasījumi
+m
+Iekšējās Meklēšanas Vārda Pārskats
+pieprasījuma vārds
+pieprasījumu vārdi
+m
+Virtuālo Mašīnu Pārskats
+virtuāla mašīna
+virtuālas mašīnas
+f
+Virtuālā Servera Pāradresāciju Pārskats
+virtuālais serveris
+virtuālie serveri
+m
+Virtuālā Servera Neveiksmju Pārskats
+virtuālais serveris
+virtuālie serveri
+m
+Lietotāju Pārskats
+lietotājs
+lietotāji
+m
+Lietotāju Pāradresācijas Pārskats
+lietotājs
+lietotāji
+m
+Lietotāju Neveiksmju Pārskats
+lietotājs
+lietotāji
+m
+Internet Pārlūkprogrammu Kopsavilkums
+Internet pārlūkprogramma
+Internet pārlūkprogrammas
+f
+Internet Pārlūkprogrammu Pārskats
+Internet pārlūkprogramma
+Internet pārlūkprogrammas
+f
+Operētājsistēmu Pārskats
+operētājsistēma
+operētājsistēmas
+f
+Domēnu Pārskats
+domēns
+domēni
+m
+Organizāciju Pārskats
+organizācija
+organizācijas
+f
+Status Kodu Pārskats
+status kods
+status kodi
+m
+Pārstrādāšanas Laika Pārskats
+Failu Izmēru Statistika
+## Used at the bottom of the report
+Šī analīze tika izveidota ar
+Analizēšanas laiks
+Mazāks kā 1
+## Used in the time reports
+Katra vienība
+parāda
+vai daļu no tiem
+lapas pieprasījums
+lapas pieprasījumi
+## Used at the bottom of each non-time report: need m, f & n genders
+nav parādīti 
+nav parādītas 
+nav parādīti
+## Used on the pie charts: again need m, f & n genders
+Cits
+Cita
+Cits
+## Used at the top of the report
+Programma bija sākta:
+Analizēti pieprasījumi no
+līdz
+## Used in the General Summary
+Veiksmīgu pieprasījumu skaits
+Veiksmīgu pieprasījumu vidējais skaits dienā
+Lapu veiksmīgo pieprasījumu skaits
+Lapu veiksmīgo pieprasījumu vidējais skaits dienā
+Logfaila rindas bez statusa koda bija
+Neveiksmīgu pieprasījumu skaits
+Pāradresēto pieprasījumu skaits
+Pieprasījumu ar informācijas statusa kodu bija
+Pieprasītie individuālie faili
+Apkalpotie individuālie serveri
+Sabojāto logfailu rindas
+Nelietotās logfaila rindas
+Pārsūtītie dati
+Dienā vidēji pārsūtītie dati
+Numuri iekavās attiecas uz
+7 dienu periods beidzoties
+pēdējās 7 dienas
+Skatīt
+Sākums
+## Some special phrases for particular reports.
+[neatrisinātas numuriskās adreses]
+[domeins nav uzrādīts]
+[nezināms domeins]
+[saknes direktorija]
+[nav direktorijas]
+[nav paplašinājums]
+[direktorijas]
+Nezināms Windows
+Cits Unix
+Roboti
+OS nezināma
+## Column headings for requests, pages, bytes and number (ie position in list)
+## and percentages and last-7-day versions of these.
+## Should be as short as possible -- abbreviate if necessary.
+## (The ?bytes represents kbytes, Mbytes etc.)
+#piepr
+7 dienu piepr.
+%piepr
+%7 dienu piepr.
+lapas
+7 dienu lapas
+%lapas
+%7 dienu lapas
+baiti
+?baiti
+7 dienu baiti
+7 dienu ?baiti
+%baiti
+%7 dienu baiti
+No.
+## Now we need to know how to say "listing the top <whatever>", "listing
+## the top <n> <whatevers>", and "listing <whatevers>". The %s and %d
+## will be replaced by the appropriate things. There may be three of each of
+## these statements, for the genders m, f and n. Any genders that aren't used,
+## you can just put a * there instead. So, for example, French starts
+## Affichage du premier %s
+## Affichage de la premi&egrave;re %s
+## *
+## with entries for m & f, but not n
+Uzrādīti topa %s
+Uzrādītas topa %s 
+Uzrādīti topa %s
+Uzrādīti topa %d %s 
+Uzrādītas topa %d %s 
+Uzrādīti topa %d %s
+Uzrādīti %s
+Uzrādītas %s
+Uzrādīti %s
+## "by" in the phrase "listing the top 3 files BY number of requests"
+pēc
+## All requests WITH AT LEAST 10 requests
+kam ir ne mazāk par
+## Different ways of doing floors
+pieprasījums pēdējo 7 dienu laikā
+pieprasījumi pēdējo 7 dienu laikā
+lapas pieprasījums pēdējo 7 dienu laikā
+lapu pieprasījumi pēdējo 7 dienu laikā
+pāradresēts pieprasījums
+pāradresēti pieprasījumi
+pāradresēts pieprasījums pēdējo 7 dienu laikā
+pāradresēti pieprasījumi pēdējo 7 dienu laikā
+neizdevies pieprasījums
+neizdevušies pieprasījumi
+neizdevies pieprasījums pēdējo 7 dienu laikā
+neizdevušies pieprasījumi pēdējo 7 dienu laikā
+% no satiksmes
+% no satiksmes pēdējo 7 dienu laikā
+% no kopējās satiksmes 
+% no vislielākās satiksmes daudzuma pēdējo 7 dienu laikā
+baits no satiksmes
+baiti no satiksmes
+## ?bytes represents kbytes, Mbytes etc.
+?baiti no satiksmes
+baits no satiksmes pēdējo 7 dienu laikā
+baiti no satiksmes pēdējo 7 dienu laikā
+?baiti no satiksmes pēdējo 7 dienu laikā
+pieprasīti
+kopā ar pāradresētiem pieprasījumiem
+kopā ar neveiksmīgiem pieprasījumiem
+ar pirmo pieprasījumu kopš
+ar pirmo pāradresēto pieprasījumu kopš
+ar pirmo neveiksmīgo pieprasījumu kopš
+## Now "sorted by": again, in m, f & n (only needed in plural though)
+sakārtoti pēc 
+sakārtotas pēc 
+sakārtoti pēc
+## Used at the top of each report
+Šajā pārskatā ir dati no
+## Used in pie charts
+Šķēles ir izveidotas no
+## different ways of sorting
+satiksmes daudzuma
+satiksmes daudzuma pēdējo 7 dienu laikā
+% no pieprasījumiem
+% no pieprasījumiem pēdējo 7 dienu laikā
+% no vislielakā pieprasījumu skaita
+% no vislielakā pieprasījumu skaita pēdējo 7 dienu laikā
+pieprasījumu skaita
+pieprasījumu skaits pēdējo 7 dienu laikā
+% no lapu pieprasījuma
+% no lapu pieprasījuma pēdējo 7 dienu laikā
+% no lapu kopējā pieprasījuma
+% no vislielākā lapu pieprasījumu skaita pēdējo 7 dienu laikā
+lapu pieprasījumu skaita
+lapu pieprasījumu skaits pēdējo 7 dienu laikā
+% no pāradresētiem pieprasījumiem
+% no pāradresētiem pieprasījumiem pēdējo 7 dienu laikā
+% no pāradresēto pieprasījumu vislielākā skaita 
+% no pāradresēto pieprasījumu vislielākā skaita pēdējo 7 dienu laikā
+pāradresēto pieprasījumu skaita
+pāradresēto pieprasījumu skaits pēdējo 7 dienu laikā
+% no neveiksmīgiem pieprasījumiem
+% no neveiksmīgiem pieprasījumiem pēdējo 7 dienu laikā
+% no visiem neveiksmīgiem pieprasījumiem
+% no neveiksmīgu pieprasījumu vislielākā skaita pēdējo 7 dienu laikā
+no neveiksmīgu pieprasījumu skaita
+neveiksmīgo pieprasījumu skaits pēdējo 7 dienu laikā
+pēdējais pieprasījums bija
+pēdējais pāradresētais pieprasījums bija
+pēdējais neveiksmīgais pieprasījums bija
+pirmā pieprasījuma laiks
+pirmā pāradresētā pieprasījuma laiks
+pirmā neveiksmīgā pieprasījuma laiks
+## 3 other ways of sorting in m, f, & n
+sakārtoti pēc alfabēta kārtības 
+sakārtotas pēc alfabēta kārtības 
+sakārtoti pēc alfabēta kārtības 
+sakārtoti pēc secības 
+sakārtotas pēc secības 
+sakārtoti pēc secības 
+nesakārtoti
+nesakārtotas
+nesakārtoti
+## The separators to use between thousands, and as a decimal point. For
+## example, English generally uses "3,000.25" so has , and . here. French uses
+## "3 000,25", so has space and , instead.
+ 
+,
+## There's a colon here, because the French like to put a space before a colon,
+## so they have space-colon instead here.
+:
+## am and pm in the sense of morning and afternoon.
+am
+pm
+## Some date formats. E.g. for 9am on 1st January 1997 use
+## %d for date          " 1"
+## %D for 0-padded date "01"
+## %e or %E for date at end of time interval (where this makes sense)
+## %m for month         "Jan"
+## %l for month at end of time interval
+## %q for quarter of the year    "1"
+## %y for short year    "97"
+## %Y for long year     "1997"
+## %z or %Z for year at end of time interval
+## %X for ISO 8601 extended date format (yyyy-mm-dd) "1997-01-01"
+## %h for hour in 24-hour clock " 9"
+## %H for 0-padded hour         "09"
+## %j for hour in 12-hour clock " 9"
+## %i, %I or %k for hour at end of time interval
+## %n for minute        "00"
+## %o for minute at end of time interval
+## %a for am or pm      "am"
+## %b for am or pm at end of time interval
+## %w for weekday       "Wed"
+## %x for a dash in a range e.g. in 14:00-14:15. This is necessary because in
+##    proper typesetting, this should be an en-dash not a regular dash.
+##
+## So for a date, English might have %d/%m/%y for 1/Jan/97, whereas German
+## would have %d.%m %y for 1.Jan 97). Note: the month number is not available
+## because it can produce ambiguous dates.
+##
+## The different date formats are as follows
+## "refer to the 7 days to [date]"
+%Y.g. %d. %m. %H:%n
+## "Program started at" and "Analysed requests from"
+%w, %Y.g. %d. %m. %H:%n
+## In Daily Report
+%d/%m/%y
+## In Daily Summary
+%w
+## In Hourly Report
+%d/%m/%y %H:%n%x%I:%o
+## In Hourly Summary
+%h
+## In Hour of the Week Summary
+%w %H:%n%x%I:%o
+## In Quarter-Hour and Five-Minute Reports
+%d/%m/%y %H:%n%x%I:%o
+## In Quarter-Hour and Five-Minute Summaries
+%H:%n%x%I:%o
+## In Weekly Report
+%d/%m/%y
+## In Monthly Report
+%m %Y
+## In Quarterly Report
+%m.%x%l. %Y
+## An alternative for Quarterly Report: %Y Q%q
+## In Yearly Report
+%Y
+## The date (d) column in non-time reports
+%d/%m/%y
+## The date & time (D) column in non-time reports
+%d/%m/%y %H:%n
+## In non-time reports: "including all files with requests since [date]"
+%d/%m/%y %H:%n
+## Finally, definitions of the HTTP status codes (see
+## ftp://ftp.isi.edu/in-notes/rfc2616.txt). You're welcome to leave these in
+## English if you think they look better that way.
+100 Turpināt pieprasījumu
+101 Tiek mainīts protokols
+1xx [Dažāda informācija]
+200 OK
+201 Izveidota
+202 Pieņemts pārstrādei nākotnē
+203 neautorizēta informācija
+204 OK, bet nav, ko sūtīt
+205 Atjaunots dokuments
+206 Daļējs saturs
+2xx [Dažādi izdevušies pieprasījumi]
+300 Pieejami vairāki dokumenti
+301 Dokuments pastāvīgi pārvietots
+302 Dokuments atrodams citur
+303 Apskatiet citu dokumentu
+304 Nav mainīts kopš pēdējās reizes
+305 Lietojiet proxy
+306 Mainiet proxy
+307 Dokuments pagaidām pārvietots
+3xx [Dažādas pāradresācijas]
+400 Slikts pieprasījums
+401 Nepieciešama autentikācija+
+402 Vajadzīgs maksājums
+403 Pieeja aizliegta
+404 Dokuments nav atrasts
+405 Metode nav atļauta
+406 Dokuments nav pieņemams klientam
+407 Nepieciešama proxy autentikācija
+408 Pieprasījuma laiks beidzies
+409 Pieprasījums ir pretrunā ar resursu stāvokli
+410 Dokuments ir pastāvīgi izņemts no lietošanas
+411 Vajadzīgs garums
+412 Iepriekšnosacījums nav izdevies
+413 Pieprasījums par garu
+414 Pieprasītais faila nosaukums par garu
+415 Neatbalstīti mediju veidi
+416 Pieprasītā amplitūda nederīga
+417 Pieprasījums nav izdevies
+4xx [Dažādas klientu/lietotāju kļūdas]
+500 Iekšējā servera kļūda
+501 Pieprasījuma veids nav atbalstīts
+502 Kļūda vienā no tālākajiem serveriem
+503 Pakalpojums pagaidām nav pieejams
+504 Gateway laiks beidzies
+505 HTTP versija nav atbalstīta
+506 Neveiksmīga pāradresācija
+5xx [Dažādas servera kļūdas]
+xxx [Nezināms]

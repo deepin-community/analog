@@ -1,0 +1,57 @@
+# Translation of analog debconf templates to German
+# Copyright (C) Debian Description Translation Project <debconf@ddtp.debian.org>
+# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2007.
+# This file is distributed under the same license as the analog package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: analog 2:6.0-13\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2007-11-16 17:51+0100\n"
+"Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
+"Language-Team: de <debian-l10n-german@lists.debian.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#  Template: analog/anlgform
+#  ddtp-prioritize: 41
+#
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "Die Webschnittstelle zu analog (anlgform) aktivieren?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"Analog enthält ein CGI-Skript namens »anlgform«, das eine Webschnittstelle "
+"für die Software bereitstellt."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"Die Aktivierung kann sicherheitsrelevant sein und Informationen, wie Log-"
+"Dateien der Website, bloßstellen, die nicht öffentlich sein sollten."
+
+#
+#~ msgid ""
+#~ "Analog includes a cgi script called anlgform that provides a web "
+#~ "interface to analog. It has a history of security problems, and may "
+#~ "expose information (web site logs) that you don't want to make public."
+#~ msgstr ""
+#~ "Analog enthält ein cgi-Script namens anlgform, das eine Web-Schnittstelle "
+#~ "zu analog bietet. Es hat eine Geschichte von Sicherheitsproblemen und "
+#~ "könnte Informationen (Website-Logs) bloßlegen, die Sie nicht "
+#~ "veröffentlichen möchten."

@@ -1,0 +1,45 @@
+Description: this path makes the build reproducible.
+Last-Update: 2022-04-13
+Index: src/Makefile
+===================================================================
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -47,6 +47,7 @@ LIBS = -lm -lgd -lpng -ljpeg -lz -lbz2 -
+ #             MPE/iX needs LIBS = -lsocket -lm
+ #             SVR4 needs LIBS = -lsocket -lnsl -lm
+ #             DYNIX/ptx needs LIBS = -L/usr/lib/bsd-socket -lsocket -lnsl -lm
++BUILD_DATE ?= $(shell date '+%b %e %Y') # define in case it is not exported
+ 
+ # Enable large file support for Debian
+ CFLAGS += -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE
+@@ -73,7 +74,7 @@ SUBDIROBJS = unzip/ioapi.o unzip/unzip.o
+ HEADERS = anlghead.h anlghea2.h anlghea3.h anlghea4.h macdir.h unzip/unzip.h
+ #	pcre/pcre.h libgd/gd.h libgd/gdfontf.h libgd/gdfonts.h unzip/unzip.h \
+ #	zlib/zlib.h bzip2/bzlib.h
+-ALLCFLAGS = $(CFLAGS) $(DEFS) -D$(OS)
++ALLCFLAGS = $(CFLAGS) $(DEFS) -D$(OS) -DBUILD_DATE="\"$(BUILD_DATE)\""
+ ALLOBJS = $(OBJS) $(SUBDIROBJS)
+ 
+ $(PROGRAM): $(OBJS) $(SUBDIRS) $(HEADERS) Makefile
+--- a/src/outxml.c
++++ b/src/outxml.c
+@@ -16,6 +16,10 @@
+ 
+ #define NDEBUG
+ 
++#ifndef BUILD_DATE
++#define BUILD_DATE __DATE__ " " __TIME__
++#endif
++
+ #include <stdio.h>
+ #include <stddef.h>
+ #include <time.h>
+@@ -86,7 +90,7 @@ void xml_stylehead(FILE *outf, Outchoice
+ 	xml_defaults( opts );
+ 
+ 	// extract a build timestamp from __DATE__ and __TIME__ -- locale dependent?! need to force "C" locale ?
+-	strptime( __DATE__" "__TIME__, "%b%n%d%n%Y%n%T", &temptime );
++	strptime( BUILD_DATE, "%b%n%d%n%Y%n%T", &temptime );
+ 
+ 	sprintf( buffer, "%04d%02d%02d%02d%02d",
+ 	temptime.tm_year+1900, temptime.tm_mon+1, temptime.tm_mday, temptime.tm_hour, temptime.tm_min );

@@ -1,0 +1,5 @@
+analog			usr/bin
+debian/analog.cfg	/etc
+anlgform.pl		usr/share/analog
+images			usr/share/analog
+debian/lang		usr/share/analog

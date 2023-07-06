@@ -1,0 +1,4 @@
+debian/*2commonlog
+debian/README.examples
+debian/analog_mail.cfg
+examples/*

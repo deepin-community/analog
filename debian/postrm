@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+#DEBHELPER#
+if [ "$1" = purge ]; then
+	rm -f /usr/lib/cgi-bin/anlgform.cgi
+	if [ -d /usr/lib/cgi-bin ]; then
+		rmdir -p --ignore-fail-on-non-empty /usr/lib/cgi-bin 2>/dev/null
+	fi
+	if [ -e /var/cache/analog/dnscache ]; then
+		rm -f /var/cache/analog/dnscache
+		rmdir -p --ignore-fail-on-non-empty /var/cache/analog/ 2>/dev/null
+	fi
+fi

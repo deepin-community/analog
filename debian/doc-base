@@ -1,0 +1,9 @@
+Document: analog
+Title: Analog Documentation
+Author: Stephen Turner
+Abstract: Documentation for Analog web stats program
+Section: Network/Monitoring
+
+Format: HTML
+Index: /usr/share/doc/analog/docs/Readme.html
+Files: /usr/share/doc/analog/docs/*.html

@@ -1,0 +1,5 @@
+Test-Command: analog --help
+Restrictions: superficial, allow-stderr
+
+Test-Command: analog
+Restrictions: allow-stderr

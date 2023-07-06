@@ -1,0 +1,3 @@
+version=4
+
+https://github.com/c-amie/analog-ce/tags/ .*/v?@ANY_VERSION@@ARCHIVE_EXT@

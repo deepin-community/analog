@@ -1,5 +1,1061 @@
-template-repository (1.0-1) unstable; urgency=medium
+analog (2:6.0.17-3) unstable; urgency=medium
 
+  * debian/analog.lintian-overrides: added to override warning about
+    documentation outside /usr/share/doc. The files are not documentation.
+  * debian/config: removed old package check, version 2:5.23-3.
+  * debian/copyright: fix spelling error.
+  * debian/lang/*: added UTF-8 language files, which were converted with iconv
+    from the upstream lang directory. Consequently:
+      - debian/install: changed to install UTF-8 language files from
+        debian/lang directory.
+      - debian/README.Debian: added explanation about debian/lang directory.
+  * debian/po/de.po: changed to UTF-8 text encoding.
+  * debian/po/pt_BR.po: changed to UTF-8 text encoding.
+  * debian/po/sv.po: changed to UTF-8 text encoding.
+  * debian/watch: updated.
+
+ -- Lourisvaldo Figueredo Junior <lourisvaldo@figueredo.tec.br>  Wed, 16 Nov 2022 15:29:59 -0600
+
+analog (2:6.0.17-2) unstable; urgency=medium
+
+  * New maintainer. (Closes: #674866)
+  * debian/control: bumped Std-Ver to 4.6.1.
+  * debian/patches/06_fix-pcre-version.patch: created to make analog work with
+    new version of PCRE. (Closes: #999917)
+
+ -- Lourisvaldo Figueredo Junior <lourisvaldo@figueredo.tec.br>  Fri, 05 Aug 2022 22:54:31 -0500
+
+analog (2:6.0.17-1) unstable; urgency=medium
+
+  * QA upload.
+  * New upstream release. (Closes: #698359) (LP: #905313) Consequently:
+      - debian/analog.cfg: created.
+      - debian/control: updated Homepage field. (Closes: #974671)
+      - debian/install: modified to install debian/analog.cfg.
+      - debian/patches:
+          ~ 00_misc_fixes.diff renamed to 01_misc_fixes.patch and updated.
+          ~ 01_bzip_reading.diff renamed to 02_bzip_reading.patch and updated.
+          ~ 02_fix_realpath_calls.diff renamed to 03_fix_realpath_calls.patch
+            and updated.
+          ~ 02_windows_vista_7.patch removed. No longer needed.
+          ~ 04_reproducible.patch updated.
+      - debian/upstream/metadata: created.
+      - debian/watch: updated.
+  * debian/rules: using SOURCE_DATE_EPOCH variable, instead of parsing
+    the output of dpkg-parsechangelog.
+
+ -- Lourisvaldo Figueredo Junior <lourisvaldo@figueredo.tec.br>  Sat, 30 Apr 2022 08:52:05 -0300
+
+analog (2:6.0-23) unstable; urgency=medium
+
+  * QA upload.
+  * Using new DH level format. Consequently:
+      - debian/compat: removed.
+      - debian/control: changed from 'debhelper' to 'debhelper-compat' in
+        Build-Depends field and bumped to 13.
+  * debian/control:
+      - Added 'Rules-Requires-Root: no' to source stanza.
+      - Updated Vcs-* fields.
+      - Bumped Standards-Version to 4.6.0.1.
+  * debian/copyright:
+      - Migrated to 1.0 format.
+      - Updated all data.
+  * debian/rules:
+      - Removed 'export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed'
+        line. No longer needed.
+  * debian/salsa-ci.yml: created.
+  * debian/tests/control: created to perform trivial CI tests. (LP: #1677701)
+  * Fix FTCBFS: Pass cross compiler to Makefile. Thank you Helmut Grohne
+    <helmut@subdivi.de>. (Closes: #812231)
+
+ -- Lourisvaldo Figueredo Junior <lourisvaldo@figueredo.tec.br>  Sun, 13 Feb 2022 15:29:44 -0300
+
+analog (2:6.0-22) unstable; urgency=medium
+
+  * QA upload.
+  * Bump Standards-Version to 3.9.8.
+  * debian/rules:
+      - Add DEB_BUILD_MAINT_OPTIONS to improve hardening.
+      - Add DEB_LDFLAGS_MAINT_APPEND to avoid a useless dependency
+        against the library's symbols.
+  * debian/watch: change the old file by a new with a fake site to
+    explain about the current status of the original upstream homepage.
+  * Run wrap-and-sort.
+
+ -- Allan Dixon Jr. <allandixonjr@gmail.com>  Thu, 10 Nov 2016 10:16:12 -0500
+
+analog (2:6.0-21) unstable; urgency=medium
+
+  * QA upload.
+  * Build-Depend on libgd-dev.  (Closes: #791850)
+  * Fix FTBFS on HURD, thanks to Cyril Roelandt.  (Closes: #674823)
+  * debian/patches/02_windows_vista_7.patch: (Closes: #618951)  (LP: #222813)
+    add patch by Andrew Glen-Young to recognize Windows 7 and Vista.
+  * Patch build system to allow the build date to be set externally,
+    and set it to the latest debian/changelog entry for reproducibility.
+    Thanks to Dhole.  (Closes: #788752)
+  * Ensure hardening flags are used during build.
+  * Use source format 3.0 (quilt), stop using quilt directly.
+  * Switch to debhelper compat level 9 and simplify d/rules.
+  * Bump Standards-Version to 3.9.6.
+  * Debconf translations:
+    - Indonesian (id) by Mahyuddin Susanto.  (Closes: #658779)
+    - Turkish (tr) by Mert Dirik.  (Closes: #759872)
+
+ -- Andreas Beckmann <anbe@debian.org>  Sat, 18 Jul 2015 20:43:25 +0200
+
+analog (2:6.0-20) unstable; urgency=low
+
+  * QA upload.
+  * Maintainer field set to QA Group.
+  * Build-Depend on libpng-dev. Closes: #662268
+  * Add missing targets to debian/rules: build-{arch,indep}.
+  * Bump Standards-Version to 3.9.5.
+
+ -- Emanuele Rocca <ema@debian.org>  Wed, 05 Feb 2014 23:14:24 +0100
+
+analog (2:6.0-19.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix pending l10n issues. Debconf translations:
+    - Danish (Joe Hansen).  Closes: #599864
+    - Korean (김종규).  Closes: #632423
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 20 Dec 2011 18:34:50 +0100
+
+analog (2:6.0-19) unstable; urgency=low
+
+  * Add Vcs-* fields.
+  * Add 01_bzip_reading.diff. Patch from
+    Andrew McCarthy <andrewmc-debian@celt.dias.ie>. Closes: #522277.
+  * Update Standards-Version to 3.8.1. (No changes).
+
+ -- Bradley Smith <bradsmith@debian.org>  Tue, 07 Apr 2009 20:44:46 +0100
+
+analog (2:6.0-18) unstable; urgency=low
+
+  * Update maintainer email address.
+  * Update Standards-Version to 3.8.0 (No changes).
+
+ -- Bradley Smith <bradsmith@debian.org>  Sat, 29 Nov 2008 19:27:48 +0000
+
+analog (2:6.0-17~lenny1) testing-proposed-updates; urgency=low
+
+  * Re-build for lenny.
+
+ -- Bradley Smith <brad@brad-smith.co.uk>  Sat, 22 Nov 2008 13:16:33 +0000
+
+analog (2:6.0-17) unstable; urgency=low
+
+  * Fix pending l10n bugs. Debconf translations:
+    - Swedish, (Martin Ågren). Closes: #491529.
+
+ -- Bradley Smith <brad@brad-smith.co.uk>  Sun, 05 Oct 2008 11:38:37 +0100
+
+analog (2:6.0-16) unstable; urgency=low
+
+  * New Maintainer. Closes: #483259
+  * Remove wrong Vcs-Git entry.
+  * Expand dh rules out to stop lintain complaining.
+  * Remove unneeded empty dir and correct README.Debian.
+  * Correct doc-base Section to Network/Monitoring.
+  * Remove /var/www/analog symlink and add instructions in README.Debian.
+  * Remove extra license file.
+  * Suggest apache2 not apache.
+  * Add quilt patch system.
+   + 00_misc_fixes - Changes moved from top srcdir.
+
+ -- Bradley Smith <brad@brad-smith.co.uk>  Thu, 05 Jun 2008 18:41:46 +0100
+
+analog (2:6.0-15) unstable; urgency=low
+
+  * debhelper 7, rules file minimisation
+  * Remove the hack to reorder the libfd dependencies, libgd2-noxpm-dev
+    has it the right way around in its substvars now.
+  * After 13 years, time to pass this on to someone else. Orphaned the
+    package.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 27 May 2008 19:37:15 -0400
+
+analog (2:6.0-14) unstable; urgency=low
+
+  * Updated Brazilian Portuguese Translation. Closes: #454593
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 22 Dec 2007 23:04:06 -0500
+
+analog (2:6.0-13) unstable; urgency=low
+
+  [ Christian Perrier ]
+  * Debconf templates and debian/control reviewed by the debian-l10n-
+    english team as part of the Smith review project. Closes: #450860
+  * [Debconf translation updates]
+  * French. Closes: #451473
+  * German. Closes: #451533
+  * Finnish. Closes: #451534
+  * Galician. Closes: #451543
+  * Japanese. Closes: #451585
+  * Italian. Closes: #451609
+  * Czech. Closes: #451830
+  * Spanish; Castilian. Closes: #452319
+  * Basque. Closes: #453276
+  * Portuguese. Closes: #453517
+  * Vietnamese. Closes: #453653
+  * Dutch; Flemish. Closes: #453699
+  * Russian. Closes: #453716
+
+  [ Joey Hess ]
+  * Don't ignore make clean errors.
+  * Add Homepage field and other new fun stuff.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 05 Dec 2007 12:07:52 -0500
+
+analog (2:6.0-12) unstable; urgency=low
+
+  * Support resolving ipv6 addresses in log files. Closes: #422582
+  * debhelper v5
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 08 May 2007 15:09:16 -0400
+
+analog (2:6.0-11) unstable; urgency=low
+
+  * Add Galician debconf translation. Closes: #411834
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 26 Feb 2007 21:57:07 -0500
+
+analog (2:6.0-10) unstable; urgency=low
+
+  * Add Portuguese debconf translation. Closes: #409408
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  8 Feb 2007 18:48:04 -0500
+
+analog (2:6.0-9) unstable; urgency=low
+
+  * Build-depend on libpng12-dev since libpng3-dev is obsolete.
+    Closes: #375980
+  * Current standards version.
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 29 Jun 2006 11:58:16 -0400
+
+analog (2:6.0-8) unstable; urgency=low
+
+  * apache2 now defaults to creating log files mode 640. Document in
+    README.Debian how to change the log permissions to something that will
+    work with anlgform. Closes: #350082
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 27 Jan 2006 14:48:19 -0500
+
+analog (2:6.0-7) unstable; urgency=low
+
+  * Fix XSIism in config script.
+  * Current standards version.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 18 Dec 2005 17:41:41 -0500
+
+analog (2:6.0-6) unstable; urgency=low
+
+  * Add Swedish debconf translation by Daniel Nylander. Closes: #330534
+  * Create a soft link to analgform.cgi if the hard link creation fails.
+    Also output a warning message, since this will not work with all servers.
+    Closes: #309817
+  * Fix config script to not expect it to only be a symlink (yes, this code
+    has been broken for a while).
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 30 Sep 2005 17:14:08 -0400
+
+analog (2:6.0-5) unstable; urgency=low
+
+  * Correct path to errors.html. Closes: #315799
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 26 Jun 2005 14:17:51 -0400
+
+analog (2:6.0-4) unstable; urgency=low
+
+  * Add Vietnamese debconf translation by Clytie Siddall. Closes: #313031
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 11 Jun 2005 13:23:47 -0400
+
+analog (2:6.0-3) unstable; urgency=low
+
+  * First release to unstable.
+  * Exclude License.txt from compression since html docs refer to it.
+    This and previous changes in this new upstream version Closes: #309960
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 20 May 2005 20:14:08 -0400
+
+analog (2:6.0-2) experimental; urgency=low
+
+  * Add Czech translation of debconf messages. Closes: #289278
+  * Ensure /usr/lib/cgi-bin exists before making a hard link there if cgi
+    script is enabled. Closes: #297211
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 28 Feb 2005 15:01:51 -0500
+
+analog (2:6.0-1) experimental; urgency=low
+
+  * New upstream release. To experimental since sarge will ship with the old
+    one.
+  * New license: Analog is now GPLed.
+  * Add details about licenses of all non-GPLed material to copyright file.
+  * Build-depend on libbz2-dev.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 19 Dec 2004 14:44:45 -0500
+
+analog (2:5.32-12) unstable; urgency=low
+
+  * Add Danish debconf translation. Closes: #276333
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 13 Oct 2004 13:09:52 -0400
+
+analog (2:5.32-11) unstable; urgency=low
+
+  * Add Italian debconf translation. Closes: #249172
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 15 May 2004 19:28:53 -0300
+
+analog (2:5.32-10) unstable; urgency=low
+
+  * Add pt debconf po translation from Bruno Rodrigues. Closes: #216391
+  * Hard link anlgform.cgi into place, to avoid problems with web servers that
+    don't like symlinks.
+
+ -- Joey Hess <joeyh@debian.org>  Tue,  9 Mar 2004 23:37:38 -0500
+
+analog (2:5.32-9) unstable; urgency=low
+
+  * Build with LFS. Closes: #230341
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 30 Jan 2004 19:39:12 -0500
+
+analog (2:5.32-8) unstable; urgency=low
+
+  * Added a Russian translation of the debconf po file. Closes: #214331
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  9 Oct 2003 15:47:46 -0400
+
+analog (2:5.32-7) unstable; urgency=low
+
+  * Updated maillog2commonlog to work with openbsd, which makes sendmail log
+    as "sm-mta".
+  * Added Japanese debconf translation from Kenshi Muto. Closes: #211950
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 21 Sep 2003 14:06:45 -0400
+
+analog (2:5.32-6) unstable; urgency=low
+
+  * Added Spanish debconf translation. Closes: #201074
+  * Added Dutch debconf translation. Closes: #204912
+  * Move lang files to /usr/share/analog/lang
+  * Move image files to /usr/share/analog/images.
+  * Make /var/www/analog link to images, and change IMAGEDIR to /analog/,
+    so images in reports are accessible from outside localhost.
+    Closes: #188653
+  * Move cgi script to /usr/share/analog; update link.
+  * README.Debian updates.
+  * Rename /etc/analog.conf to /etc/analog.cfg, to match upstream.
+  * Add preinst to move config file on upgrade.
+  * The .gif removal in /usr/share/doc/analog was broken a while ago, and not
+    worthwhile, so removed.
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 21 Aug 2003 15:34:46 -0400
+
+analog (2:5.32-5) unstable; urgency=low
+
+  * Remove out of date and unmaintained mail.lng.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 20 Jun 2003 10:56:54 -0400
+
+analog (2:5.32-4) unstable; urgency=low
+
+  * Add pt_BR debconf po translation. Closes: #197512
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 15 Jun 2003 19:14:22 -0400
+
+analog (2:5.32-3) unstable; urgency=low
+
+  * French debconf translation. Closes: #196773
+
+ -- Joey Hess <joeyh@debian.org>  Mon,  9 Jun 2003 19:47:00 -0400
+
+analog (2:5.32-2) unstable; urgency=low
+
+  * Added apache2 log file to analog.cfg.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 25 Mar 2003 02:01:19 -0800
+
+analog (2:5.32-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 23 Mar 2003 21:18:57 -0800
+
+analog (2:5.31-3) unstable; urgency=low
+
+  * Added German translation from DDTP.
+
+ -- Joey Hess <joeyh@debian.org>  Fri,  7 Mar 2003 12:04:10 -0500
+
+analog (2:5.31-2) unstable; urgency=low
+
+  * postinst: Don't rpmdir cgi-bin directory if it does not exist.
+    Closes: #181095
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 16 Feb 2003 10:39:06 -0500
+
+analog (2:5.31-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Sat,  1 Feb 2003 15:56:16 -0500
+
+analog (2:5.30-2) unstable; urgency=low
+
+  * Updated doc-base file to reflect moved docs. Closes: #175279
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 31 Jan 2003 22:45:15 -0500
+
+analog (2:5.30-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added in how-to docs dir. Getting the links to it right required moving
+    the html docs in the binary package into a docs directory though.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 30 Nov 2002 17:30:54 -0500
+
+analog (2:5.24-6) unstable; urgency=low
+
+  * Added ogg typedef, Closes: #144881
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 15 Sep 2002 19:00:16 -0400
+
+analog (2:5.24-5) unstable; urgency=low
+
+  * Rebuild again, with current libgd2-noxpm-dev (-noxpm because libgd2-dev
+    inexlicably went missing). Really Closes: #159725
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  8 Sep 2002 19:39:33 -0400
+
+analog (2:5.24-4) unstable; urgency=low
+
+  * Update to libpng3, probably Closes: #159725
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  5 Sep 2002 12:23:03 -0400
+
+analog (2:5.24-3) unstable; urgency=low
+
+  * Added code to rules file to invert order of libgd deps, so the
+    -noxpm version comes first, as makes sense for a web app.
+    Closes: #151379
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 10 Jul 2002 15:16:38 -0400
+
+analog (2:5.24-2) unstable; urgency=low
+
+  * Build with gd 2. Closes: #151237
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 28 Jun 2002 15:11:36 -0400
+
+analog (2:5.24-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 28 Jun 2002 15:05:39 -0400
+
+analog (2:5.23-5) unstable; urgency=low
+
+  * Fixed debhelper builddep.
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 13 Jun 2002 18:19:36 -0400
+
+analog (2:5.23-4) unstable; urgency=low
+
+  * Fixed symlink description in README.Debian.
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 13 Jun 2002 15:34:09 -0400
+
+analog (2:5.23-3) unstable; urgency=low
+
+  * Added a debconf question about the anlgform cgi. It defaults to disabling
+    it on fresh installes; on upgrades it defaults to leaving it on, but asks
+    the question with a higher priority. The symlink can also be managed by
+    hand, and if the package is reconfigured it will notice the change and
+    adjust the answer accordingly.
+  * debhelper v4
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 11 Jun 2002 17:54:43 -0400
+
+analog (2:5.23-0woody1) testing-security; urgency=medium
+
+  * Upload for woody.
+  * Include a shlibs.local to fix malformatted libpng2.shlibs; taking no
+    chances..
+  * Thanks, Tollef, for the NMU.
+  * New upstream release fixes DOS in anlgform cgi script. Could be used to
+    fill up the partition /var/log is in.
+  * This release may make it into woody, at the discretion of the security
+    team. A post-woody release will default the analgform interface to off,
+    since analog's author is now reccommending it not be used.
+  * Moved on up to libpcre 3, since libprce2-dev is no more.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 18 May 2002 18:39:38 -0400
+
+analog (2:5.22-3) unstable; urgency=low
+
+  * Fixed rmdir in postrm.
+
+ -- Joey Hess <joey@kitenet.net>  Thu, 28 Mar 2002 17:13:59 -0500
+
+analog (2:5.22-2) unstable; urgency=low
+
+  * Make postrm only clean cache in purge. Closes: #140375
+
+ -- Joey Hess <joey@kitenet.net>  Thu, 28 Mar 2002 16:50:24 -0500
+
+analog (2:5.22-1) unstable; urgency=HIGH
+
+  * New upstream version fixes cross-site scripting attack.
+
+ -- Joey Hess <joey@kitenet.net>  Wed, 20 Mar 2002 11:30:31 -0500
+
+analog (2:5.21-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 20 Feb 2002 15:03:00 -0500
+
+analog (2:5.2-1) unstable; urgency=low
+
+  * New upstream version with revised license.
+  * Description update and cleanups.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 13 Feb 2002 12:26:12 -0500
+
+analog (2:5.1-4) unstable; urgency=low
+
+  * Rebuilt linked to libpng2, since libgd is linked with that library, and
+    linking with linpng3 would make analong pull in both, and may have caused
+    #129019.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 14 Jan 2002 11:05:26 -0500
+
+analog (2:5.1-3) unstable; urgency=low
+
+  * Clarified license from Stephen Turner, which makes clear that you are
+    allowed to sell analog, provided you make the source available.
+    Closes: #121916
+
+ -- Joey Hess <joeyh@debian.org>  Sat,  5 Jan 2002 13:42:41 -0500
+
+analog (2:5.1-2) unstable; urgency=low
+
+  * Suggest rmagic, which uses analog for pretty graphs.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 25 Nov 2001 19:48:08 -0500
+
+analog (2:5.1-1) unstable; urgency=low
+
+  * New upstream (had to bump the epoch).
+
+ -- Joey Hess <joeyh@debian.org>  Wed,  7 Nov 2001 17:33:56 -0500
+
+analog (1:5.03-7) unstable; urgency=low
+
+  * Killed the dwww menu file, go to doc-base.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 14 Oct 2001 02:16:25 -0400
+
+analog (1:5.03-6) unstable; urgency=low
+
+  * Specify lots of default paths (many of them the current directory) for
+    various types of files, including config files. Added
+    /var/cache/analog/dns/ which will be used for dns caches by default (if
+    you turn dns caching on). Fixed analog to look for language files in
+    /usr/lib/analog/lang/. Documented it all in README.Debian.
+    Closes: #108133
+  * /var/lib/analog should not be needed.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 20 Aug 2001 14:27:49 -0400
+
+analog (1:5.03-5) unstable; urgency=low
+
+  * Use analog.man, instead of placeholder analog.1. Much more complete man
+    page. Thanks to Stephen for pointing it out. Closes: #109379
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 20 Aug 2001 13:45:54 -0400
+
+analog (1:5.03-4) unstable; urgency=low
+
+  * Stephen updated the maillog2commonlog stuff. Closes: #106834
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 28 Jul 2001 13:07:55 -0400
+
+analog (1:5.03-3) unstable; urgency=low
+
+  * Fixed image links again. Closes: #104330
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 11 Jul 2001 15:26:56 -0400
+
+analog (1:5.03-2) unstable; urgency=low
+
+  * Added path to gunzip in config file, as it seems PATH is not set when
+    analgform.cgi runs from some web server. Closes: #104166
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 10 Jul 2001 17:22:01 -0400
+
+analog (1:5.03-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  8 Jul 2001 21:58:28 -0400
+
+analog (1:5.0-3) unstable; urgency=low
+
+  * Fixed links to images in docs, Closes: #100614
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 12 Jun 2001 16:05:31 -0400
+
+analog (1:5.0-2) unstable; urgency=low
+
+  * Added missing build dep, Closes: #96371
+
+ -- Joey Hess <joeyh@debian.org>  Fri,  4 May 2001 21:09:58 -0400
+
+analog (1:5.0-1) unstable; urgency=low
+
+  * Major new upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Tue,  1 May 2001 21:04:27 -0400
+
+analog (1:4.16-4) unstable; urgency=low
+
+  * Include anlgdocs.css in deb, Closes: #94252
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 21 Apr 2001 15:16:55 -0700
+
+analog (1:4.16-3) unstable; urgency=low
+
+  * Removed broken mail.lng file, it's too much bother to keep it in sync.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 10 Apr 2001 15:12:00 -0700
+
+analog (1:4.16-2) unstable; urgency=low
+
+  * The dns cache file has moved to /var/cache/analog; Closes: #93379
+  * Added code to postinst to move old one, if any, and code to postrm to
+    clean it.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 10 Apr 2001 01:39:43 -0700
+
+analog (1:4.16-1) unstable; urgency=HIGH
+
+  * Remotely exploitable buffer overflow in the form interface. New
+    upstream version to fix.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 13 Feb 2001 11:01:31 -0800
+
+analog (1:4.15-2) unstable; urgency=low
+
+  * Use debhelper v3.
+
+ -- Joey Hess <joeyh@debian.org>  Fri,  9 Feb 2001 18:02:09 -0800
+
+analog (1:4.15-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  1 Feb 2001 14:18:45 -0800
+
+analog (1:4.14-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 22 Jan 2001 12:46:13 -0800
+
+analog (1:4.13-3) unstable; urgency=low
+
+  * Good greif, I managed to introduce a y2k bug in the last version.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 31 Oct 2000 18:42:41 -0800
+
+analog (1:4.13-2) unstable; urgency=low
+
+  * modified maillog2commonlog to deal with hostnames that have hyphens in
+    their names, and made it autodetect things like GMT offset and domain.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 30 Oct 2000 22:26:51 -0800
+
+analog (1:4.13-1) unstable; urgency=low
+
+  * New upstream version, Closes: #75531
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 26 Oct 2000 11:03:14 -0700
+
+analog (1:4.12-2) unstable; urgency=low
+
+  * Removed CVS cruft dirs from binary .deb (an artifact of my build
+    system, only affects the package if I build it..)
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 13 Oct 2000 00:37:05 -0400
+
+analog (1:4.12-1) unstable; urgency=low
+
+  * New upstream release.
+  * Copyright changes. I've diffed them, and here are the changes:
+    - lost the clause about complying with local/international law
+      Closes: #71550
+    - html generated by analog no longer must link to its home page
+    - if you use less than 1000 lines of code from analog, you can
+      still relicense it under the gpl, but no longer under the artistic
+      license
+    - the "no warrentee" section is longer and disclaims responsibility
+      of the author for any illegal acts committed with the program
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  5 Oct 2000 12:39:20 -0700
+
+analog (1:4.11-2) unstable; urgency=low
+
+  * Updated to using debhelper v2.
+  * Some fixes now that I'm building straight out of a cvs tree with CVS
+    dirs.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 25 Sep 2000 12:52:54 -0700
+
+analog (1:4.11-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 14 Jun 2000 19:13:21 -0700
+
+analog (1:4.10-3) unstable; urgency=low
+
+  * Let's try this once more. Upload with full source.
+
+ -- Joey Hess <joeyh@debian.org>  Sun,  2 Apr 2000 14:00:04 -0700
+
+analog (1:4.10-2) unstable; urgency=low
+
+  * Gurk. Triddled version number so it compares as greater than 4.04
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 31 Mar 2000 13:51:06 -0800
+
+analog (1:4.1-1) unstable; urgency=low
+
+  * New upstream version, with pcre support.
+  * Since it needs pcre 3, which is not in Debian, I am using the pcre
+    files shipped with analog. This will change once pcre 3 is properly
+    packaged.
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 30 Mar 2000 11:17:32 -0800
+
+analog (1:4.04-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 21 Mar 2000 16:00:53 -0800
+
+analog (1:4.03-5) unstable; urgency=low
+
+  * Fixed whatis parse of man page, Closes: #60475
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 15 Mar 2000 13:08:14 -0800
+
+analog (1:4.03-4) unstable; urgency=low
+
+  * Don't specify agent log file format in config file; Stephen says analog
+    can autodetect it. Closes: #59837
+
+ -- Joey Hess <joeyh@debian.org>  Tue,  7 Mar 2000 17:56:00 -0800
+
+analog (1:4.03-3) unstable; urgency=low
+
+  * Updated README.examples, since the examples directory now contains
+    upstream examples as well. Closes: #58794
+  * Pulled README.txt from the binary package, with the author's blessing.
+    Closes: #58793
+  * whole.html is not included to save space, however I have updated
+    Readme.html to fix the link to that file (now points to whole.html on
+    analog's web site). Author allows this; updated copyright file.
+    Closes: #58796
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 23 Feb 2000 08:28:07 -0800
+
+analog (1:4.03-2) unstable; urgency=low
+
+  * Minor typo fix, Closes: #58790
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 23 Feb 2000 05:03:49 -0800
+
+analog (1:4.03-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated home page url in copyright file.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 22 Feb 2000 19:47:56 -0800
+
+analog (1:4.01-5) unstable; urgency=low
+
+  * Applied David's changes to mail.lng.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 11 Feb 2000 13:01:44 -0800
+
+analog (1:4.01-4) unstable; urgency=low
+
+  * Closes: #15019, with some documentation in the README.Debian.
+  * Applied two patches for maillog2commonlog.
+    - general fixups, and email parsing fix, from
+      "David J. MacKenzie" <djm at web.us.uu.net>
+    - postfix patch from Patrik Rak <patrik at ein.cz> Closes: #57802
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 11 Feb 2000 11:28:32 -0800
+
+analog (1:4.01-3) unstable; urgency=low
+
+  * Added examples, which includes virtual domains example. Closes: #57249
+    (Re-upload with merge.)
+
+ -- Joey Hess <joeyh@debian.org>  Mon,  7 Feb 2000 13:47:55 -0800
+
+analog (1:4.01-2) unstable; urgency=low
+
+  * Fixed ANALOGDIR directory. Closes: #56781.
+
+ -- Joey Hess <joeyh@debian.org>  Tue,  1 Feb 2000 10:30:41 -0800
+
+analog (1:4.01-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 17 Dec 1999 09:53:28 -0800
+
+analog (1:4.0-2) unstable; urgency=low
+
+  * Added build deps.
+
+ -- Joey Hess <joeyh@debian.org>  Sat,  4 Dec 1999 00:03:24 -0800
+
+analog (1:4.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixed form interface, Closes: #50348
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 16 Nov 1999 14:08:27 -0800
+
+analog (1:3.90beta2-1) unstable; urgency=low
+
+  * New upstream release. Author says he is comfortable with this being the
+    version in stable.
+
+ -- Joey Hess <joeyh@debian.org>  Fri,  5 Nov 1999 14:32:35 -0800
+
+analog (1:3.32-2) unstable; urgency=low
+
+  * Added postfix support to maillog2commonlong, thanks to Randolph Chung
+  * FHS.
+
+ -- Joey Hess <joeyh@debian.org>  Mon,  6 Sep 1999 12:48:45 -0700
+
+analog (1:3.32-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  2 Sep 1999 12:46:07 -0700
+
+analog (1:3.31-1) unstable; urgency=low
+
+  * New upstream release, fixes cache file problems. (Closes: #39497)
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 19 Jun 1999 13:39:01 -0700
+
+analog (1:3.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Wed, 19 May 1999 14:54:57 -0700
+
+analog (1:3.2-1) unstable; urgency=low
+
+  * New upstream release. Use epoch to let dpkg know it's really newer.
+
+ -- Joey Hess <joeyh@debian.org>  Wed,  5 May 1999 13:47:01 -0700
+
+analog (3.11-1) unstable; urgency=low
+
+  * New upstream release. It turns out a security hole in the form interface
+    has been fixed since version 3.1, so I have enabled the form interface.
+    This fixes bug #27112.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 29 Nov 1998 13:38:18 -0800
+
+analog (3.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Mon,  2 Nov 1998 14:57:01 -0800
+
+analog (3.0-4) unstable; urgency=low
+
+  * Added analog_mail.conf, which I had left out by accident.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 14 Sep 1998 13:27:36 -0700
+
+analog (3.0-3) unstable; urgency=low
+
+  * Included in examples some home-grown scripts of mine that allow analog to
+    process mail server and ftp server logs.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 11 Sep 1998 11:08:21 -0700
+
+analog (3.0-2) unstable; urgency=low
+
+  * Don't use icon=none in menu file.
+
+ -- Joey Hess <joeyh@debian.org>  Wed,  5 Aug 1998 14:33:20 -0700
+
+analog (3.0-1) unstable; urgency=low
+
+  * New upstream release.
+    - analog cgi script is working now, however, I have not enabled it,
+      becuase I fear it can be a security hole if the "lo" directive is used.
+      Talking to the author about that now..
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 19 Jun 1998 15:35:54 -0700
+
+analog (2.91beta1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Mon,  8 Jun 1998 23:32:44 -0400
+
+analog (2.90beta4-2) unstable; urgency=low
+
+  * No longer reccommends httpd, just suggests it. I've come up with
+    too many cases where analog is useful on a machine w/o a httpd.
+
+ -- Joey Hess <joeyh@debian.org>  Sat, 25 Apr 1998 00:52:01 -0700
+
+analog (2.90beta4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  9 Apr 1998 12:00:21 -0700
+
+analog (2.90beta2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Joey Hess <joeyh@debian.org>  Fri,  3 Apr 1998 10:45:08 -0800
+
+analog (2.90beta1-1) unstable; urgency=low
+
+  * New upstream release with a large number of changes.
+  * Updated control file's description of analog's features.
+  * Currently lacks the cgi form interface (I think it will be added back
+    later.)
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 29 Mar 1998 13:56:12 -0800
+
+analog (2.11-9) unstable; urgency=low
+
+  * Simply rebuilt with an updated debhelper to fix a number of lintain
+    warnings.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 10 Mar 1998 17:52:53 -0800
+
+analog (2.11-8) unstable; urgency=low
+
+  * Set the signal mask properly on initialization. Works around a bug in
+    cron. Thanks, Culus!
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 10 Feb 1998 16:46:40 -0800
+
+analog (2.11-7) unstable; urgency=low
+
+  * Updated standards-version.
+
+ -- Joey Hess <joeyh@debian.org>  Mon,  9 Feb 1998 13:28:51 -0800
+
+analog (2.11-6) unstable; urgency=low
+
+  * Got rid of "1" file in diff for once and for all.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 23 Dec 1997 14:47:31 -0500
+
+analog (2.11-5) unstable; urgency=low
+
+  * Use debhelper. This fixes bug #14368, since debhelper will not compress
+    the copyright file.
+  * Removed file named "1" from diff.
+
+ -- Joey Hess <joeyh@debian.org>  Tue,  4 Nov 1997 15:14:18 -0500
+
+analog (2.11-4) unstable; urgency=low
+
+  * Routine update of debian/rules:
+    Fakeroot and sudo fixes. (#11326)
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 22 Aug 1997 15:06:50 -0400
+
+analog (2.11-3) unstable; urgency=low
+
+  * "analog -" would segfault because it called strtok() incorrectly (only
+    happened when built with libc6). Fixed.
+
+ -- Joey Hess <joeyh@debian.org>  Thu,  3 Jul 1997 20:50:01 -0400
+
+analog (2.11-2) unstable; urgency=low
+
+  * Rebuilt with glibc6.
+
+ -- Joey Hess <joeyh@debian.org>  Tue, 24 Jun 1997 16:56:21 -0400
+
+analog (2.11-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixed language files, they should actually be included in the package
+    and work now.
+  * Added debian doc menu.
+
+ -- Joey Hess <joeyh@debian.org>  Sun, 11 May 1997 01:19:35 -0400
+
+analog (2.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Changed a few more links to images on analog's home page to relative
+    links to images that come with analog.
+
+ -- Joey Hess <joeyh@debian.org>  Fri, 14 Feb 1997 23:59:18 -0500
+
+analog (1.93-1) unstable; urgency=low
+
+  * New upstream release.
+  * Added a short man page, closing bug #6341.
+  * Updated to webstandard 3.0, closes bug #6938.
+  * Moved to Section: web
+  * Routine update of debian/rules:
+    Don't pass package name to debstd + fixes for multi binary packages.
+    Use build-stamp instead of build.
+  * Removed links to images on analog's home page. Changed to relative
+    links to images that come with anlog. Fixes bug #6369.
+  * Fixed "gcat" typo, closes bug #6947
+  * analogform.html is no longer a conffile. If you need to edit this file,
+    copy it to your web server root and edit the copy.
+  * Removed hard-coded hostname in analogform.html.
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 30 Jan 1997 00:05:02 -0500
+
+analog (1.92.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Updated to new source format, and uses debmake.
+  * New maintainer's email address.
+  * Will process logfiles from apache version 1.1.1 by default.
+  * Added Update file to the doc dir.
+  * Attempts to comply with Web Standard version 2.3.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 23 Dec 1996 15:47:40 -0500
+
+1.91.4-2
+  * Changed section to net
+  * Changed priority to optional
+
+1.91.4-1
   * Initial release
-
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800

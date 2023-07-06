@@ -1,9 +1,131 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: template-repository
-Source: https://github.com/deepin-community/template-repository
+Upstream-Name: analog
 
 Files: *
-Copyright: 2023 Tsic404 <liuheng@deepin.org>
+Copyright: 1995-2004 Stephen R. E. Turner
+           1998-2001 Jason Linhart
+License: GPL-2+
+
+Files: analog-data.dtd
+       src/outxml.c
+       src/outxml.h
+Copyright: 2003 Per Jessen <per@computer.org>
+License: GPL-2+
+
+Files: examples/big.cfg
+       examples/statslab.cfg
+Copyright: 1999-2004 Stephen Turner
+License: public-domain
+
+Files: src/bzip2/*
+Copyright: 1996-2002 Julian R Seward <jseward@acm.org>
+License: BSD-4-clause
+
+Files: debian/*
+Copyright: 1995-2008 Joey Hess <joeyh@debian.org>
+           2004      Morten Brix Pedersen <morten@wtf.dk>
+           2007      Carlos Lisboa <carloslisboa@gmail.com>
+           2007      Clytie Siddall <clytie@riverland.net.au>
+           2007      Eder L. Marques (frolic) <frolic@debian-ce.org>
+           2007      Helge Kreutzmann <debian@helgefjell.de>
+           2007      Luca Monducci <luca.mo@tiscali.it>
+           2007      Piarres Beobide <pi@beobide.net>
+           2008-2009 Andrew McCarthy <andrewmc-debian@celt.dias.ie>
+           2010      Joe Hansen <joedalton2@yahoo.dk>
+           2011      Christian Perrier <bubulle@debian.org>
+           2014      Emanuele Rocca <ema@debian.org>
+           2014      Mert Dirik <mertdirik@gmail.com>
+           2015      Andreas Beckmann <anbe@debian.org>
+           2016      Allan Dixon Jr. <allandixonjr@gmail.com>
+           2022      Lourisvaldo Figueredo Junior <lourisvaldo@figueredo.tec.br>
+License: GPL-2+
+
+Files: src/libgd/*
+Copyright: 1994-2000 Cold Spring Harbor Laboratory
+           1994-1998 Thomas G. Lane
+           1996-2000 Boutell.Com, Inc
+           1999-2000 Greg Roelofs
+           1999-2000 John Ellson <ellson@lucent.com>
+           1999-2000 Philip Warner
+           2000      Doug Becker
+           2000      Maurice Szmurlo
+License: GD
+
+Files: src/libpng/*
+Copyright: 1995-1996 Group 42, Inc.
+           1995-1996 Guy Eric Schalnat
+           1996-1997 Andreas Dilger
+           1998-2000 Glenn Randers-Pehrson
+License: libpng
+
+Files: src/pcre/*
+Copyright: 1997-2000 University of Cambridge
+License: PCRE
+
+Files: src/unzip/*
+Copyright: 1990-2000 Info-ZIP.
+           1998-2003 Gilles Vollant
+License: zlib
+
+Files: src/zlib/*
+Copyright: 1995-2002 Jean-loup Gailly <jloup@gzip.org>
+           1995-2002 Mark Adler <madler@alumni.caltech.edu>
+License: zlib
+
+License: BSD-4-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. The origin of this software must not be misrepresented; you must
+    not claim that you wrote the original software.  If you use this
+    software in a product, an acknowledgment in the product
+    documentation would be appreciated but is not required.
+ .
+ 3. Altered source versions must be plainly marked as such, and must
+    not be misrepresented as being the original software.
+ .
+ 4. The name of the author may not be used to endorse or promote
+    products derived from this software without specific prior written
+    permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
+ OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: GD
+ _Permission has been granted to copy, distribute and modify gd in
+ any context without fee, including a commercial application,
+ provided that this notice is present in user-accessible supporting
+ documentation._
+ .
+ This does not affect your ownership of the derived work itself, and
+ the intent is to assure proper credit for the authors of gd, not to
+ interfere with your productive use of gd. If you have questions,
+ ask. "Derived works" includes all programs that utilize the
+ library. Credit must be given in user-accessible documentation.
+ .
+ _This software is provided "AS IS."_ The copyright holders disclaim
+ all warranties, either express or implied, including but not
+ limited to implied warranties of merchantability and fitness for a
+ particular purpose, with respect to this code and accompanying
+ documentation.
+ .
+ Although their code does not appear in gd 1.8.1, the authors wish
+ to thank David Koblas, David Rowley, and Hutchison Avenue Software
+ Corporation for their prior contributions.
+
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -20,3 +142,66 @@ License: GPL-2+
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: libpng
+ The PNG Reference Library is supplied "AS IS".  The Contributing Authors
+ and Group 42, Inc. disclaim all warranties, expressed or implied,
+ including, without limitation, the warranties of merchantability and of
+ fitness for any purpose.  The Contributing Authors and Group 42, Inc.
+ assume no liability for direct, indirect, incidental, special, exemplary,
+ or consequential damages, which may result from the use of the PNG
+ Reference Library, even if advised of the possibility of such damage.
+ .
+ Permission is hereby granted to use, copy, modify, and distribute this
+ source code, or portions hereof, for any purpose, without fee, subject
+ to the following restrictions:
+ .
+ 1. The origin of this source code must not be
+    misrepresented.
+ .
+ 2. Altered versions must be plainly marked as such
+    and must not be misrepresented as being the
+    original source.
+ .
+ 3. This Copyright notice may not be removed or
+    altered from any source or altered source
+    distribution.
+
+License: PCRE
+ Permission is granted to anyone to use this software for any purpose on any
+ computer system, and to redistribute it freely, subject to the following
+ restrictions:
+ .
+ 1. This software is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ .
+ 2. The origin of this software must not be misrepresented, either by
+    explicit claim or by omission.
+ .
+ 3. Altered versions must be plainly marked as such, and must not be
+    misrepresented as being the original software.
+ .
+ 4. If PCRE is embedded in any software that is released under the GNU
+    General Purpose License (GPL), then the terms of that license shall
+    supersede any condition above with which it is incompatible.
+
+License: public-domain
+ This code is in the public domain.
+
+License: zlib
+ This software is provided 'as-is', without any express or implied
+ warranty. In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ .
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ .
+ 1. The origin of this software must not be misrepresented; you must not claim
+    that you wrote the original software. If you use this software in a product,
+    an acknowledgment in the product documentation would be appreciated but is not
+    required.
+ 2. Altered source versions must be plainly marked as such, and must not be
+    misrepresented as being the original software.
+ 3. This notice may not be removed or altered from any source distribution.

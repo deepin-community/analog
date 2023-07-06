@@ -1,0 +1,51 @@
+# Galician translation of analog's debconf templates
+# This file is distributed under the same license as the analog package.
+# Jacobo Tarrio <jtarrio@debian.org>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: analog\n"
+"Report-Msgid-Bugs-To: Source: analog@packages.debian.org\n"
+"POT-Creation-Date: 2007-11-16 07:25+0000\n"
+"PO-Revision-Date: 2007-11-16 18:42+0000\n"
+"Last-Translator: Jacobo Tarrio <jtarrio@debian.org>\n"
+"Language-Team: Galician <proxecto@trasno.net>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid "Enable the anlgform web interface to analog?"
+msgstr "¿Activar a interface web de analog, anlgform?"
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Analog includes a CGI script called anlgform that provides a web interface "
+"to the software."
+msgstr ""
+"Analog inclúe un script CGI chamado anglform que fornece unha interface web "
+"para o software."
+
+#. Type: boolean
+#. Description
+#: ../templates:2001
+msgid ""
+"Enabling it may have security implications and expose information, such as "
+"web site logs, that shouldn't be public."
+msgstr ""
+"Activalo pode conlevar problemas de seguridade e expoñer información, tal "
+"coma os rexistros dos sitios web, que non debería ser pública."
+
+#~ msgid ""
+#~ "Analog includes a cgi script called anlgform that provides a web "
+#~ "interface to analog. It has a history of security problems, and may "
+#~ "expose information (web site logs) that you don't want to make public."
+#~ msgstr ""
+#~ "Analog inclúe un script cgi chamado anlgform que fornece unha interface "
+#~ "web para analog. Ten unha historia de problemas de seguridade, e pode "
+#~ "expor información (rexistros dos sitios web) que non quere publicar."

@@ -1,0 +1,97 @@
+# Report descriptions file for analog 6.0.
+#
+# This file contains descriptions of each report. Lines starting with a
+# hash (#) are comments. Otherwise, each report must take EXACTLY ONE LINE.
+#
+# Slovak language files made by DooDeeToo (http://doodeetoo.host.sk)
+#
+# character set: UTF-8
+#
+# Yearly Report
+Tento prehľad zobrazuje aktivitu v každom roku.
+# Quarterly Report
+Tento prehľad zobrazuje aktivitu v každom štvrťroku.
+# Monthly Report
+Tento prehľad zobrazuje aktivitu v každom mesiaci.
+# Weekly Report
+Tento prehľad zobrazuje aktivitu v každom týždni.
+# Daily Report
+Tento prehľad zobrazuje aktivitu v každom dni.
+# Hourly Report
+Tento prehľad zobrazuje aktivitu v každej hodine.
+# Quarter-Hour Report
+Tento prehľad zobrazuje aktivitu v každom štvrťhodinovom intervale.
+# Five-Minute Report
+Tento prehľad zobrazuje aktivitu v každom 5-minútovom intervale.
+# Daily Summary
+Tento prehľad zobrazuje celkovú aktivitu pre každý deň týždňa, súhrnne pre všetky týždne v prehľade.
+# Hourly Summary
+Tento prehľad zobrazuje celkovú aktivitu pre každú hodinu dňa, súhrnne pre všetky dni v prehľade.
+# Hour of the Week Summary
+Tento prehľad zobrazuje celkovú aktivitu pre každú hodinu týždňa, súhrnne pre všetky týždne v prehľade.
+# Quarter-Hour Summary
+Tento prehľad zobrazuje celkovú aktivitu pre každý štvrťhodinový interval dňa, súhrnne pre všetky dni v prehľade.
+# Five-Minute Summary
+Tento prehľad zobrazuje celkovú aktivitu pre každý 5-minútový interval dňa, súhrnne pre všetky dni v prehľade.
+# General Summary
+Tento prehľad obsahuje celkové štatistiky.
+# Request Report
+Tento prehľad zobrazuje požadované súbory na stránkach.
+# Redirection Report
+Tento prehľad zobrazuje súbory, ktoré spôsobili presmerovanie požiadaviek na iný súbor. (Zvyčajne adresáre s chýbajúcim lomítkom na konci alebo skripty, ktoré vnútili presmerovanie.)
+# Failure Report
+Tento prehľad zobrazuje súbory, ktoré spôsobili zlyhanie, napríklad nenájdené súbory.
+# File Type Report
+Tento prehľad zobrazuje prípony vyžiadaných súborov.
+# Directory Report
+Tento prehľad zobrazuje adresáre, z ktorých boli vyžiadané súbory. (Diagramy pre každý adresár obsahujú všetky jeho podadresáre.)
+# Host Report
+Tento prehľad zobrazuje počítače, ktoré si vyžiadali súbory.
+# Host Redirection Report
+Tento prehľad zobrazuje počítače, ktoré boli presmerované na iný súbor.
+# Host Failure Report
+Tento prehľad zobrazuje počítače, ktoré narazili na zlyhania požiadaviek.
+# Domain Report
+Tento prehľad zobrazuje krajiny počítačov, ktoré si vyžiadali súbory.
+# Referrer Report
+Tento prehľad zobrazuje referencie (odkiaľ ľudia nasledovali odkazy, alebo stránky, ktoré obsahujú obrázky z týchto stránok).
+# Referring Site Report
+Tento prehľad zobrazuje servery, z ktorých ľudia nasledovali odkazy.
+# Redirected Referrer Report
+Tento prehľad zobrazuje referencie, ktoré spôsobili presmerované požiadavky.
+# Failed Referrer Report
+Tento prehľad zobrazuje referencie, obsahujúce chybné odkazy na stránku.
+# Browser Report
+Tento prehľad zobrazuje, ktoré prehliadače používajú návštevníci, spolu s podrobnosťami.
+# Virtual Host Report
+Tento prehľad zobrazuje aktivitu každej virtuálnej domény na stránkach.
+# Virtual Host Redirection Report
+Tento prehľad zobrazuje presmerované požiadavky na každú virtuálnu doménu.
+# Virtual Host Failure Report
+Tento prehľad zobrazuje neúspešné požiadavky na každú virtuálnu doménu.
+# User Report
+Tento prehľad zobrazuje užívateľov, ktorí si vyžiadali súbory, ak boli autentifikovaní alebo môžu byť identifikovaní cez cookies.
+# User Redirection Report
+Tento prehľad zobrazuje užívateľov, ktorí boli presmerovaní na iný súbor.
+# User Failure Report
+Tento prehľad zobrazuje užívateľov, ktorí narazili na neúspešné požiadavky.
+# Organisation Report
+Tento prehľad zobrazuje organizácie počítačov, ktoré si vyžiadali súbory.
+# Search Query Report
+Tento prehľad zobrazuje, ktoré výrazy ľudia zadali do vyhľadávačov, aby našli tieto stránky.
+# Search Word Report
+Tento prehľad zobrazuje, ktoré slová ľudia zadali do vyhľadávačov, aby našli tieto stránky.
+# Internal Search Query Report
+Tento prehľad zobrazuje, ktoré výrazy ľudia zadali do skriptov na týchto stránkach.
+# Internal Search Word Report
+Tento prehľad zobrazuje, ktoré slová ľudia zadali do skriptov na týchto stránkach.
+# Browser Summary
+Tento prehľad zobrazuje, ktoré prehliadače používajú návštevníci.
+# Operating System Report
+Tento prehľad zobrazuje, ktoré operačné systémy používajú návštevníci.
+# File Size Report
+Tento prehľad zobrazuje veľkosti súborov.
+# Status Code Report
+Tento prehľad zobrazuje stavový kód HTTP pre všetky požiadavky.
+# Processing Time Report
+Tento prehľad zobrazuje čas potrebný na vykonanie úspešných požiadaviek.

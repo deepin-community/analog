@@ -1,4 +1,37 @@
 #!/usr/bin/make -f
+#export DH_VERBOSE = 1
+
+include /usr/share/dpkg/architecture.mk
+include  /usr/share/dpkg/pkg-info.mk
+export BUILD_DATE = $(SOURCE_DATE_EPOCH)
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+ifeq ($(origin CC),default)
+CC := $(DEB_HOST_GNU_TYPE)-gcc
+endif
 
 %:
 	dh $@
+
+override_dh_auto_build:
+	# NOTE: settting things to "" makes analog look for config files
+	# in the current directory if no path is specified. See anlghead.h
+	$(MAKE) DEFS='-DHOSTNAME=\"Debian\ Linux\ System\" \
+		-DHOSTURL=\"/\" \
+		-DLOGSDIR=\"/var/log/apache/\" \
+		-DLOGFILE=\"access.log\" \
+		-DIMAGEDIR=\"/analog/\" \
+		-DLANGDIR=\"/usr/share/analog/lang/\" \
+		-DCACHEDIR=\"/var/cache/analog/\" \
+		-DDNSDIR=\"/var/cache/analog/dns/\" \
+		-DCONFIGDIR=\"\" \
+		-DOUTDIR=\"\" \
+		-DERRDIR=\"\" \
+		-DHEADERDIR=\"\" \
+		-DLOCKDIR=\"/var/lock/\" \
+		-DDEFAULTCONFIGFILE=\"/etc/analog.cfg\"' \
+		CC=$(CC) \
+		analog
+
+override_dh_installdocs:
+	dh_installdocs -X Licence.txt
